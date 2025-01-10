@@ -37,5 +37,6 @@ class StorageFoods(models.Model):
     sell_price_money = models.FloatField(blank=True, null=True, verbose_name="Valor de venda dinheiro")
     image = models.ImageField(upload_to="foods/", blank=True, null=True)
 
+
     def __str__(self):
         return self.food + " " + self.weight
