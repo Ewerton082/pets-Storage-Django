@@ -1,6 +1,10 @@
 {% extends 'starter.html' %}
 {% load static %}
 
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="container-sm">
         <form class="row my-4 mx-auto" action="" method="get">
@@ -13,11 +17,12 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Ações</th>
                 <th>Nome</th>
                 <th>Peso</th>
-                <th>Tipo</th>
+                <th class="responsive-column">Tipo</th>
                 <th>Quantidade</th>
-                <th>Valor Compra</th>
+                <th class="responsive-column">Valor Compra</th>
                 <th>Valor Venda</th>
             </tr>
         </thead>
@@ -26,13 +31,15 @@
                 {% for item in pet_food %}
                     <tr>
                         <td>{{ item.id }}</td>
+                        <td><a href="{% url 'storage:Detail' item.pk %}" class="btn btn-primary p-1">Detalhes</a></td>
                         <td>{{ item.food }}</td>
                         <td>{{ item.weight }}</td>
-                        <td>{{ item.animal }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.buy_price }} R$</td>
+                        <td class="responsive-column">{{ item.animal }}</td>
+                        <td>{{ item.quantity }}</td>                            
+                        <td class="responsive-column">{{ item.buy_price }} R$</td>
                         <td>{{ item.sell_price_card }} R$</td>
                     </tr>
+
                 {% endfor %}
             {% else %}
                 <tr>

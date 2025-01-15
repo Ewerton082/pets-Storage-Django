@@ -1,11 +1,11 @@
 from django.forms import ModelForm, TextInput, Select, NumberInput, FileInput
-from storage.models import StorageFoods
+from storage.models import StorageFoods, Brands
 
 
 class NewFood(ModelForm):
     class Meta:
         model = StorageFoods
-        fields = fields = ["brand", "food", "weight", "quantity", "animal", "buy_price",
+        fields = ["brand", "food", "weight", "quantity", "animal", "buy_price",
                             "sell_price_card", "sell_price_money", "image"]
         exclude = ["id",]
         widgets = {
@@ -20,3 +20,17 @@ class NewFood(ModelForm):
             "image": FileInput(attrs={"class": "form-control"}),
 
         }
+
+
+class Newbrand(ModelForm):
+    class Meta:
+        model = Brands
+        fields = ["name", "corporate", "seller"]
+        exclude = ["id",]
+
+        widgets = {
+            "name": TextInput(attrs={"class": "form-select"}),
+            "corporate" : TextInput(attrs={"class": "form-control", "placeholder": "xx.xxx.xxx/xxxx-xx"}),
+            "seller" : TextInput(attrs={"class": "form-control"})    
+            }
+

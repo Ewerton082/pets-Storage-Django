@@ -20,6 +20,7 @@ class Brands(models.Model):
     id = models.AutoField(primary_key=True,auto_created=True, verbose_name="Id")
     name = models.CharField(blank=False, null=False, max_length=70, verbose_name="Nome da Empresa")
     corporate = models.CharField(blank=True, null=True, max_length=30, verbose_name="Razão Social")
+    seller = models.CharField(blank=True, null=True, max_length=80, verbose_name="Nome do Vendedor")
 
     def __str__(self):
         return self.name

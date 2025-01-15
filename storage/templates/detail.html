@@ -1,0 +1,34 @@
+{% extends 'starter.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-md mx-auto my-4 bg-light text-center rounded-pill border border-dark">
+        <h1 class="p-1">Detalhes da {{item.food}}</h1>
+    </div>
+
+    <div class="container-sm mx-auto border border-2 rounded p-4" style="max-width: 500px;">
+        <div class="col card w50">
+            {% if item.image %}
+                <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
+            {% else %}
+                <img class="card-img-top" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" height="225">
+            {% endif %}
+            <h2 class="card-title text-center">{{item.food}} {{item.weight}} KG</h2>
+            <div class="card-text mt-2">
+                <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}}</p>
+                <p class="ms-2 lead fw-bold"><span class="text-success">Valor de compra:</span> R$ {{item.buy_price}}</p>
+                <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Cartão:</span> R$ {{item.sell_price_card}}</p>
+                <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Dinheiro:</span> R$ {{item.sell_price_money}}</p>
+            </div>
+        </div>
+        <div class="col mt-3 d-flex justify-content-evenly">
+            <a href="" class="btn btn-success">Comprar</a>
+            <a href="" class="btn btn-danger">Vender</a>
+            <a href="" class="btn btn-primary">Ações</a>
+        </div>
+    </div>
+    <div class="container-sm mx-auto text-center">
+        <a href="{% url 'storage:Home' %}" class="fs-3 container-sm btn btn-outline-primary mx-auto mt-4" style="max-width: 450px;">Voltar Ao Inicio</a>
+    </div>
+
+{% endblock %}
