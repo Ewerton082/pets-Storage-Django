@@ -5,8 +5,6 @@ from django.forms import TextInput, PasswordInput, CheckboxInput
 
 
 class CreateNewUserForm(UserCreationForm):
-    is_superuser = forms.BooleanField(required=False, label="Super Usuário", widget=CheckboxInput(attrs={"class":"form-check-control"}))
-
     password1 = forms.CharField(label=("Senha"), strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password","class": "form-control"}),)
     
@@ -22,4 +20,12 @@ class CreateNewUserForm(UserCreationForm):
         widgets = {
             "username": TextInput(attrs={"class": "form-control"}),
             }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["is_superuser"].widget = CheckboxInput(attrs={"class": "form-check-input"})
+        self.fields["is_superuser"].label = "Super Usuário"
+        self.fields["is_superuser"].required = False
+
 

@@ -9,7 +9,7 @@
     <div class="container-fluid mx-auto border border-2 rounded p-4" style="max-width: 550px;">
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
             {% for field in form %}
-                <div class="mb-1">
+                <div class="mb-3">
                     {{field.label}}
                     {{field}}
                 </div>
