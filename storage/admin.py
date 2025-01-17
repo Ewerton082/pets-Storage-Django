@@ -3,6 +3,7 @@ from .models import Brands, StorageFoods
 
 # Register your models here.
 
+
 class AdminBrands(admin.ModelAdmin):
     list_display = ("id", "name", "corporate")
     search_fields = ("name",)

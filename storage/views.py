@@ -29,7 +29,6 @@ class DetailFood(DetailView):
     context_object_name = "item"
 
 
-
 class CreateFood(CreateView):
     form_class = NewFood
     success_url = reverse_lazy("Home")
@@ -72,14 +71,14 @@ class DeleteFood(DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return HttpResponseRedirect(self.success_url)
-    
+
 
 class CreateBrand(CreateView):
     form_class = Newbrand
-    success_url ="../"
+    success_url = "../"
     template_name = "create.html"
     context_object_name = "form"
-        
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form_title"] = "Adicionar Nova Marca"

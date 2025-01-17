@@ -6,11 +6,11 @@ class NewFood(ModelForm):
     class Meta:
         model = StorageFoods
         fields = ["brand", "food", "weight", "quantity", "animal", "buy_price",
-                            "sell_price_card", "sell_price_money", "image"]
+                  "sell_price_card", "sell_price_money", "image"]
         exclude = ["id",]
         widgets = {
             "brand": Select(attrs={"class": "form-select"}),
-            "food" : TextInput(attrs={"class": "form-control"}),
+            "food": TextInput(attrs={"class": "form-control"}),
             "weight": Select(attrs={"class": "form-select"}),
             "quantity": NumberInput(attrs={"class": "form-control"}),
             "animal": Select(attrs={"class": "form-select"}),
@@ -30,7 +30,6 @@ class Newbrand(ModelForm):
 
         widgets = {
             "name": TextInput(attrs={"class": "form-select"}),
-            "corporate" : TextInput(attrs={"class": "form-control", "placeholder": "xx.xxx.xxx/xxxx-xx"}),
-            "seller" : TextInput(attrs={"class": "form-control"})    
-            }
-
+            "corporate": TextInput(attrs={"class": "form-control", "placeholder": "xx.xxx.xxx/xxxx-xx"}),
+            "seller": TextInput(attrs={"class": "form-control"}),
+        }

@@ -7,17 +7,16 @@ WEIGHTS_FOODS = (
     ("15.1", "15 KG"),
     ("20.1", "20 KG"),
     ("25.1", "25 KG"),
-    )
+)
 
 ANIMALS_TYPE = (
     ("Cão", "Cachorro"),
-    ("Gato", "Gato"),    
-) 
-
+    ("Gato", "Gato"),
+)
 
 
 class Brands(models.Model):
-    id = models.AutoField(primary_key=True,auto_created=True, verbose_name="Id")
+    id = models.AutoField(primary_key=True, auto_created=True, verbose_name="Id")
     name = models.CharField(blank=False, null=False, max_length=70, verbose_name="Nome da Empresa")
     corporate = models.CharField(blank=True, null=True, max_length=30, verbose_name="Razão Social")
     seller = models.CharField(blank=True, null=True, max_length=80, verbose_name="Nome do Vendedor")
@@ -37,7 +36,6 @@ class StorageFoods(models.Model):
     sell_price_card = models.FloatField(blank=True, null=True, verbose_name="Valor de venda cartão")
     sell_price_money = models.FloatField(blank=True, null=True, verbose_name="Valor de venda dinheiro")
     image = models.ImageField(upload_to="foods/", blank=True, null=True)
-
 
     def __str__(self):
         return self.food + " " + self.weight
