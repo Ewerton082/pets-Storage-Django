@@ -85,3 +85,7 @@ class CreateBrand(CreateView):
         context["form_btn_success"] = "Criar Marca"
         context["retrieve"] = "Home"
         return context
+
+
+class CreateTransition(CreateView):
+    pass

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -39,3 +40,15 @@ class StorageFoods(models.Model):
 
     def __str__(self):
         return self.food + " " + self.weight
+
+
+class StorageMoviments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuário")
+    food = models.ForeignKey(StorageFoods, on_delete=models.CASCADE, verbose_name="Ração")
+    moviment_type = models.CharField(max_length=10, verbose_name="Ação")
+    quantity = models.IntegerField(verbose_name="Quantidade")
+    date = models.DateTimeField(auto_now_add=True, verbose_name="Data da operação")
+
+    def __str__(self):
+        return f"{self.user} - {self.food} ({self.moviment_type}) - {self.quantity}"
+

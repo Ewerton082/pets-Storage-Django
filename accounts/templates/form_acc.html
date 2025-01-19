@@ -13,6 +13,7 @@
                     {{field.label}}
                     {{field}}
                     <div class="text-danger">
+                        {{field.errors}}
                         {% if form.non_field_errors %}
                             {{ form.non_field_errors|striptags }}
                         {% endif %}

@@ -22,13 +22,82 @@
             </div>
         </div>
         <div class="col mt-3 d-flex justify-content-evenly">
-            <a href="" class="btn btn-success">Comprar</a>
-            <a href="" class="btn btn-danger">Vender</a>
-            <a href="" class="btn btn-primary">Ações</a>
-        </div>
+
+            <button type="button" class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#Modal_Buy">Comprar</button>
+
+            <div class="modal fade" id="Modal_Buy" tabindex="-1" aria-labelledby="Modal_Buy_Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="Modal_Buy_Label"><span class="text-success">Comprar</span> {{item.food}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                            <form action="{% url 'storage:Transition' item.pk%}" id="movimentsForm" method="post">{%csrf_token%}
+                                <div class="modal-body">
+                                    <p class="lead fs-5">Quantas {{item.food}} você deseja comprar? ela está custando <span class="text-success">{{item.buy_price}}</span> no momento.</p>
+                                <div class="d-flex mt-4 text-center">
+                                    <label for="quantidade " class="form-label me-4">Quantidade: </label>
+                                    <input type="number" name="quantidade" id="quantidade" class="form-control w-25 align-middle" placeholder="Quantas?"  required> 
+                                </div>
+
+                                <input type="hidden" name="tipo_movimentacao" value="buy">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                                    <button type="submit" class="btn btn-success">Realizar Compra</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+              <button type="button" class="btn btn-danger w-25 " data-bs-toggle="modal" data-bs-target="#Modal_Sell">Venda</button>
+
+              <div class="modal fade" id="Modal_Sell" tabindex="-1" aria-labelledby="Modal_Sell_Label" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="Modal_Sell_Label"><span class="text-danger">Vender</span> {{item.food}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form action="{% url 'storage:Transition' item.pk%}" id="movimentsForm" method="post">{%csrf_token%}
+                          <div class="modal-body">
+                              <p class="lead fs-5">Quantas {{item.food}} você deseja vender? ela está saindo a <span class="text-danger">{{item.sell_price_card}}</span> no momento.</p>
+                              <div class="d-flex mt-4 text-center">
+                                 <label for="quantidade " class="form-label me-4">Quantidade: </label>
+                                 <input type="number" name="quantidade" id="quantidade" class="form-control w-25 align-middle" placeholder="Quantas?"  required> 
+                              </div>
+  
+                              <input type="hidden" name="tipo_movimentacao" value="sell">
+  
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                              <button type="submit" class="btn btn-danger">Realizar Venda</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dropdown w-25">
+                    <a class="btn btn-primary dropdown-toggle w-100" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Ações
+                    </a>
+                  
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Editar Ração</a></li>
+                      <li><a class="dropdown-item" href="#">Deletar Ração</a></li>
+                      <li><a class="dropdown-item" href="#">Editar Marca</a></li>
+                    </ul>
+                  </div>
+            </div>
     </div>
     <div class="container-sm mx-auto text-center">
         <a href="{% url 'storage:Home' %}" class="fs-3 container-sm btn btn-outline-primary mx-auto mt-4" style="max-width: 450px;">Voltar Ao Inicio</a>
     </div>
 
 {% endblock %}
+
+<script src="{% static 'js/transitions.js'%}"></script>
