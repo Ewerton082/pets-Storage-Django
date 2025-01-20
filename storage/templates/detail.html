@@ -6,7 +6,7 @@
         <h1 class="p-1">Detalhes da {{item.food}}</h1>
     </div>
 
-    <div class="container-sm mx-auto border border-2 rounded p-4" style="max-width: 500px;">
+    <div class="container-sm mx-auto border border-2 rounded p-4 d-lg-none" style="max-width: 500px;">
         <div class="col card w50">
             {% if item.image %}
                 <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
@@ -93,6 +93,69 @@
                     </ul>
                   </div>
             </div>
+    </div>
+
+    <div class="d-none d-lg-block container-flex m-4 align-self-center" style="height: 650px;">
+        <div class="row text-center">
+            <div class="col col-4 h-75 p-0">
+                {% if item.image %}
+                    <img class="img-thumbnail" src="{{item.image.url}}" alt="{{item.food}}" style="max-height: 500px !important">
+                {% else %}
+                <img class="img-thumbnail" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" style="max-height: 500px !important">
+                {% endif %}
+            </div>
+            <div class="col col-8">
+                <div class="container-sm text-center">
+                    <h1 class="fs-1 fw-bold col-12">{{item.food}} | {{item.weight}} KG</h1>
+                    <hr class="col-12 border-2 border-dark">
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Distribuidora :</p>
+                        <p class="fs-3 col-5 text-start">{{item.brand}}</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade :</p>
+                        <p class="fs-3 col-5 text-start">{{item.quantity}} UN.</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade Minima :</p>
+                        <p class="fs-3 col-5 text-start">{{item.alert_quantity}} UN.</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Compra :</p>
+                        <p class="fs-3 col-5 text-start text-success">{{item.buy_price}} R$</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda crédito :</p>
+                        <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_card}} R$</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda Dinheiro :</p>
+                        <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_money}} R$</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <a href="" class="btn btn-success col m-2 p-2 text-center ">Comprar</a>
+                        <a href="" class="btn btn-danger col m-2 p-2 text-center ">Vender</a>
+                        <div class="dropdown col">
+                            <button class="btn btn-primary dropdown-toggle col m-2 p-2 text-center w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">Editar...</button>
+                            <ul class="dropdown-menu text-center w-75">
+                              <li><a class="dropdown-item" href="#">Editar Ração</a></li>
+                              <li><a class="dropdown-item" href="#">Editar Marca</a></li>
+                              
+                            </ul>
+                        </div>
+                        <a href="{% url 'storage:Delete' item.pk %}" class="btn col btn-secondary m-2 p-2 text-center ">Deletar Ração</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
     </div>
     <div class="container-sm mx-auto text-center">
         <a href="{% url 'storage:Home' %}" class="fs-3 container-sm btn btn-outline-primary mx-auto mt-4" style="max-width: 450px;">Voltar Ao Inicio</a>

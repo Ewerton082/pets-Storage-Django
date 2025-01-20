@@ -32,6 +32,7 @@ class StorageFoods(models.Model):
     food = models.CharField(blank=False, null=False, max_length=150, verbose_name="Nome da ração")
     weight = models.CharField(choices=WEIGHTS_FOODS, max_length=5, blank=False, null=False, verbose_name="Peso da ração")
     quantity = models.IntegerField(blank=False, null=False, verbose_name="Quantidade")
+    alert_quantity = models.IntegerField(blank=True, null=True, verbose_name="Quantidade de Alerta")
     animal = models.CharField(choices=ANIMALS_TYPE, blank=False, null=False, max_length=6, verbose_name="Animal")
     buy_price = models.FloatField(blank=True, null=True, verbose_name="Valor de compra")
     sell_price_card = models.FloatField(blank=True, null=True, verbose_name="Valor de venda cartão")
