@@ -4,4 +4,4 @@ db.sqlite3
 
 .flake8
 
-media
+media/foods/.gitkeep
