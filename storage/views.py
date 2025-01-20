@@ -31,7 +31,7 @@ class DetailFood(DetailView):
 
 class CreateFood(CreateView):
     form_class = NewFood
-    success_url = reverse_lazy("Home")
+    success_url = reverse_lazy("storage:Home")
     template_name = "create.html"
     context_object_name = "form"
 
@@ -62,7 +62,7 @@ class UpdateFood(UpdateView):
 
 class DeleteFood(DeleteView):
     model = StorageFoods
-    success_url = reverse_lazy("Home")
+    success_url = reverse_lazy("storage:Home")
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
@@ -75,7 +75,7 @@ class DeleteFood(DeleteView):
 
 class CreateBrand(CreateView):
     form_class = Newbrand
-    success_url = "../"
+    success_url = "../../"
     template_name = "create.html"
     context_object_name = "form"
 
@@ -83,7 +83,7 @@ class CreateBrand(CreateView):
         context = super().get_context_data(**kwargs)
         context["form_title"] = "Adicionar Nova Marca"
         context["form_btn_success"] = "Criar Marca"
-        context["retrieve"] = "Home"
+        context["retrieve"] = "storage:Home"
         return context
 
 
