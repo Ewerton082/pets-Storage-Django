@@ -1,19 +1,35 @@
-$(document).ready(function() {
-    // Quando o formulário for enviado
-    $('#myForm').on('submit', function(event) {
-        event.preventDefault();  // Impede o envio normal do formulário
+document.addEventListener("DOMContentLoaded", () => {
+    const formBuy = document.getElementById("form-buy");
+    const formSell = document.getElementById("form-sell");
 
-        $.ajax({
-            type: 'POST',
-            url: '{% url "minha_url_de_redirecionamento" %}',  // URL de destino
-            data: $(this).serialize(),  // Envia os dados do formulário
-            success: function(response) {
-                // Se a resposta for bem-sucedida, redireciona
-                window.location.href = response.redirect_url;
-            },
-            error: function(xhr, errmsg, err) {
-                console.log("Erro: " + errmsg);
+    if (formBuy) {
+        formBuy.addEventListener("submit", (event) => {
+            const quantityInput = formBuy.querySelector("input[name='quantidade']");
+            const quantidade = parseInt(quantityInput.value, 10);
+
+            if (isNaN(quantidade) || quantidade <= 0) {
+                event.preventDefault();
+                alert("Por favor, insira uma quantidade válida maior que 0.");
             }
         });
-    });
+    }
+
+    if (formSell) {
+        formSell.addEventListener("submit", (event) => {
+            const quantityInput = formSell.querySelector("input[name='quantidade']");
+            const quantidade = parseInt(quantityInput.value, 10);
+            const stockQuantity = parseInt(formSell.dataset.stockQuantity, 10);
+
+            if (isNaN(quantidade) || quantidade <= 0) {
+                event.preventDefault();
+                alert("Por favor, insira uma quantidade válida maior que 0.");
+                return;
+            }
+
+            if (quantidade > stockQuantity) {
+                event.preventDefault();
+                alert(`Você está tentando vender mais do que o estoque disponível (${stockQuantity}).`);
+            }
+        });
+    }
 });

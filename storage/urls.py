@@ -10,5 +10,5 @@ urlpatterns = [
     path("detail/<int:pk>/", DetailFood.as_view(), name="Detail"),
     path("detail/<int:pk>/update/", UpdateFood.as_view(), name="Update"),
     path("detail/<int:pk>/delete/", DeleteFood.as_view(), name="Delete"),
-    path("detail/<int:pk>/transition/", CreateTransition.as_view(), name="Transition"),
+    path("detail/<int:pk>/transition/", CreateTransition, name="Transition"),
 ]
