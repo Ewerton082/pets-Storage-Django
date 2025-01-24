@@ -34,6 +34,9 @@ class LoginUser(LoginView):
     template_name = "form_acc.html"
     success_url = reverse_lazy("storage:Home")
 
+    def get_success_url(self):
+        return self.success_url
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form_title"] = "Fazer Login"
