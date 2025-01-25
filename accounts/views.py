@@ -1,11 +1,14 @@
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
-from accounts.forms import CreateNewUserForm, LoginUserForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from accounts.forms import CreateNewUserForm, LoginUserForm
+from core.validation import superuser_required
 
 
-class CreateUser(CreateView):
+
+class CreateUser(LoginRequiredMixin, CreateView):
     model = User
     form_class = CreateNewUserForm
     template_name = "form_acc.html"
@@ -45,5 +48,6 @@ class LoginUser(LoginView):
         return context
 
 
-class LogoutUser(LogoutView):
-    next_page = reverse_lazy("accounts:login")
+
+class LogoutUser(LoginRequiredMixin, LogoutView):
+    next_page = reverse_lazy("accounts:Login")

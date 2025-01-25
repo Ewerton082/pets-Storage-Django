@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Brands, StorageFoods
+from .models import Brands, StorageFoods, StorageMoviments
 
 # Register your models here.
 
@@ -16,5 +16,11 @@ class AdminStorage(admin.ModelAdmin):
     ordering = ("-quantity",)
 
 
+class AdminTransition(admin.ModelAdmin):
+    list_display = ("id", "user", "food", "moviment_type", "quantity", "date")
+    ordering = ("-date",)
+
+
+admin.site.register(StorageMoviments, AdminTransition)
 admin.site.register(Brands, AdminBrands)
 admin.site.register(StorageFoods, AdminStorage)

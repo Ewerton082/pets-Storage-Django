@@ -3,13 +3,16 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from storage.models import StorageFoods, Brands
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from storage.models import StorageFoods, Brands, StorageMoviments
 from storage.forms import NewFood, Newbrand
+from core.validation import superuser_required
 
 # Create your views here.
 
 
-class HomeStorage(ListView):
+
+class HomeStorage(LoginRequiredMixin, ListView):
     template_name = "home.html"
     model = StorageFoods
     context_object_name = "pet_food"
@@ -24,13 +27,16 @@ class HomeStorage(ListView):
         return queryset
 
 
-class DetailFood(DetailView):
+
+class DetailFood(LoginRequiredMixin, DetailView):
     template_name = "detail.html"
     model = StorageFoods
     context_object_name = "item"
 
 
-class CreateFood(CreateView):
+
+
+class CreateFood(LoginRequiredMixin, CreateView):
     form_class = NewFood
     success_url = reverse_lazy("storage:Home")
     template_name = "create.html"
@@ -44,7 +50,8 @@ class CreateFood(CreateView):
         return context
 
 
-class UpdateFood(UpdateView):
+
+class UpdateFood(LoginRequiredMixin, UpdateView):
     form_class = NewFood
     model = StorageFoods
     template_name = "create.html"
@@ -61,7 +68,8 @@ class UpdateFood(UpdateView):
         return context
 
 
-class DeleteFood(DeleteView):
+
+class DeleteFood(LoginRequiredMixin, DeleteView):
     model = StorageFoods
     success_url = reverse_lazy("storage:Home")
 
@@ -74,7 +82,8 @@ class DeleteFood(DeleteView):
         return HttpResponseRedirect(self.success_url)
 
 
-class CreateBrand(CreateView):
+
+class CreateBrand(LoginRequiredMixin, CreateView):
     form_class = Newbrand
     success_url = "../../"
     template_name = "create.html"
@@ -89,7 +98,8 @@ class CreateBrand(CreateView):
 
 
 
-class UpdateBrand(UpdateView):
+
+class UpdateBrand(LoginRequiredMixin, UpdateView):
     form_class = Newbrand
     model = Brands
     template_name = "create.html"
@@ -111,35 +121,30 @@ def CreateTransition(request, pk):
         food_item = get_object_or_404(StorageFoods, pk=pk)
         quantidade = int(request.POST.get('quantidade', 0))
         tipo_movimentacao = request.POST.get('tipo_movimentacao')
+        print(tipo_movimentacao)
+        success_url = reverse_lazy('storage:Detail', kwargs={'pk': food_item.pk} )
 
-        if quantidade <= 0:
-            messages.error(request, "A quantidade deve ser maior que zero.")
-            return redirect('storage:Detalhe', pk=pk)
-
-        # Atualiza o estoque e cria o histórico
         if tipo_movimentacao == 'buy':
             food_item.quantity += quantidade
-            TransactionHistory.objects.create(
+            StorageMoviments.objects.create(
                 user=request.user,
                 food=food_item,
                 quantity=quantidade,
-                movement_type='Compra',
+                moviment_type='Compra',
             )
-            messages.success(request, f"Você comprou {quantidade} unidades de {food_item.food}.")
+
         elif tipo_movimentacao == 'sell':
             if food_item.quantity >= quantidade:
                 food_item.quantity -= quantidade
-                TransactionHistory.objects.create(
+                print(food_item.quantity)
+                StorageMoviments.objects.create(
                     user=request.user,
                     food=food_item,
                     quantity=quantidade,
-                    movement_type='Venda',
+                    moviment_type='Venda',
                 )
-                messages.success(request, f"Você vendeu {quantidade} unidades de {food_item.food}.")
-            else:
-                messages.error(request, "Estoque insuficiente para a venda.")
-        
-        food_item.save()
-        return redirect('storage:Detalhe', pk=pk)
 
-    return redirect('storage:Home')
+        print("salvando")
+        food_item.save()
+        return HttpResponseRedirect(success_url)
+    

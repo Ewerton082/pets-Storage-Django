@@ -6,7 +6,7 @@
         <h1 class="p-1">Detalhes da {{item.food}}</h1>
     </div>
 
-    <div class="container-sm mx-auto border border-2 rounded p-4 d-lg-none" style="max-width: 500px;">
+    <div class="container-sm mx-auto border border-2 rounded p-4 d-lg-none bg-light" style="max-width: 500px;">
         <div class="col card w50">
             {% if item.image %}
                 <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
@@ -23,7 +23,7 @@
         </div>
         <div class="col mt-3 d-flex justify-content-evenly">
 
-            <a type="button" class="btn btn-success m-2 p-3 text-center" data-bs-toggle="modal" data-bs-target="#buy_modal">Comprar</a>
+            <a type="button" class="btn btn-success m-2 p-3 text-center" data-bs-toggle="modal" data-bs-target="#buy_modal">Comprar </a>
             <a type="button" class="btn btn-danger m-2 p-3 text-center" data-bs-toggle="modal" data-bs-target="#sell_modal">Venda</a>
             <a href="{% url 'storage:Update' item.pk %}" class="btn btn-primary m-2 p-3 text-center">Editar Ração</a>
             <a type="button" data-bs-toggle="modal" data-bs-target="#delete_modal" class="btn col btn-secondary m-2 p-2 text-center ">Deletar Ração</a>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="d-none d-lg-block container-flex m-4 align-self-center" style="height: 650px;">
+    <div class="d-none d-lg-block container-flex m-4 align-self-center bg-light border border-1 p-5 border-black rounded">
         <div class="row text-center">
             <div class="col col-4 h-75 p-0">
                 {% if item.image %}
@@ -76,10 +76,20 @@
                     </div>
 
                     <div class="row mt-4">
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#buy_modal" class="btn btn-success col m-2 p-2 text-center ">Comprar</a>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#sell_modal" class="btn btn-danger col m-2 p-2 text-center ">Vender</a>
-                        <a href="{% url 'storage:Update' item.pk %}" class="btn btn-primary col m-2 p-2 text-center">Editar Ração</a>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#delete_modal" class="btn col btn-secondary m-2 p-2 text-center ">Deletar Ração</a>
+
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#sell_modal" class="btn btn-danger col m-2 p-2 text-center ">Vender <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+                          </svg></a>
+
+                        {% if user.is_superuser %}
+                          <a type="button" data-bs-toggle="modal" data-bs-target="#buy_modal" class="btn btn-success col m-2 p-2 text-center ">Comprar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                          </svg></a>
+                      
+                            <a href="{% url 'storage:Update' item.pk %}" class="btn btn-primary col m-2 p-2 text-center">Editar Ração</a>
+                            
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#delete_modal" class="btn col btn-secondary m-2 p-2 text-center ">Deletar Ração</a>
+                        {% endif %}
                     </div>         
                 </div>
             </div>
@@ -104,6 +114,7 @@
                     <div class="d-flex w-75 mt-4 text-center ms-auto">
                         <label for="quantidade_compra" class="form-label me-4 fs-2">QTD:</label>
                         <input type="number" name="quantidade" id="quantidade_compra" required min="1" placeholder="Quantas?" class="form-control w-50 align-middle">
+                        <input type="hidden" name="tipo_movimentacao" value="buy">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -129,6 +140,8 @@
                     <div class="d-flex w-75 mt-4 text-center ms-auto">
                         <label for="quantidade_venda" class="form-label me-4 fs-2">QTD:</label>
                         <input type="number" name="quantidade" id="quantidade_venda" required min="1" max="{{item.quantity}}" placeholder="Quantas?" class="form-control w-50 align-middle">
+                        <input type="hidden" name="tipo_movimentacao" value="sell">
+
                     </div>
                 </div>
                 <div class="modal-footer">

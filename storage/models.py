@@ -46,7 +46,7 @@ class StorageFoods(models.Model):
 class StorageMoviments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuário")
     food = models.ForeignKey(StorageFoods, on_delete=models.CASCADE, verbose_name="Ração")
-    moviment_type = models.CharField(max_length=10, verbose_name="Ação")
+    moviment_type = models.CharField(max_length=6, verbose_name="Ação")
     quantity = models.IntegerField(verbose_name="Quantidade")
     date = models.DateTimeField(auto_now_add=True, verbose_name="Data da operação")
 
