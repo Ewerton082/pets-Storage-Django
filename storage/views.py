@@ -144,7 +144,6 @@ def CreateTransition(request, pk):
                     moviment_type='Venda',
                 )
 
-        print("salvando")
         food_item.save()
         return HttpResponseRedirect(success_url)
     

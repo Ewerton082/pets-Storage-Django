@@ -14,12 +14,17 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <h1 class="navbar-brand fs-2 ms-3">Olá, {{user.username}}</h1>
+                {% if user.is_authenticated %}
+                    <h1 class="navbar-brand fs-2 ms-3">Olá, {{user.username}}</h1>
+                {% else %}
+                    <h1 class="navbar-brand fs-2 ms-3">Faça login para continuar</h1>
+                {% endif %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="main_navbar">
                     <ul class="navbar-nav ms-5">
+                        {% if user.is_authenticated %}
                         <li class="nav-item mx-2 fs-5"><a href="{% url 'storage:Home' %}" class="nav-link">Estoque</a></li>
                         {% if user.is_superuser %}
                             <li class="nav-item dropdown mx-2">
@@ -74,15 +79,14 @@
                                 </button>
                             </form>
                         </li>
+                        {% endif %}
                     </ul>
-                    <p class="ms-auto me-3">06/05/2003</p>
                 </div>
-
             </div>
         </nav>
     </header>
     
-    <main class="container-fluid flex-grow-1">
+    <main class="container-fluid">
         {% block content %}
         
         {% endblock %}
