@@ -17,23 +17,35 @@ class Command(BaseCommand):
 
                 for row in reader:
 
-                    brand = row.get("brand", "").strip()
-                    brand = Brands.objects.filter(name=brand).first()
-                    if not brand:
-                        self.stdout.write(self.style.ERROR(f"Não encontramos a marca então não adicionamos a {name}"))
+                    brand_seed = row.get("brand", "").strip()
+                    brand_seed = Brands.objects.filter(name=brand_seed).first()
+                    if not brand_seed:
+                        self.stdout.write(self.style.ERROR(f"Não encontramos a marca então não adicionamos a {name_seed}"))
                         continue
                     
-                    name = row.get("name", "").strip()
-                    weight = row.get("weight", "").strip()
-                    quantity = row.get("quantity", "").strip()
-                    quantity_alert = row.get("quantity_alert", "").strip()
-                    animal = row.get("animal", "").strip()
-                    buy = row.get("buy", "").strip()
-                    sell_cred = row.get("sell_cred", "").strip()
-                    sell_money = row.get("sell_money", "").strip()
+                    name_seed = row.get("name", "").strip()
+                    weight_seed = row.get("weight", "").strip()
+                    quantity_seed = row.get("quantity", "").strip()
+                    quantity_alert_seed = row.get("quantity_alert", "").strip()
+                    animal_seed = row.get("animal", "").strip()
+                    buy_seed = row.get("buy", "").strip()
+                    sell_cred_seed = row.get("sell_cred", "").strip()
+                    sell_money_seed = row.get("sell_money", "").strip()
+                    
+                    StorageFoods.objects.create(
+                        brand=brand_seed,
+                        food=name_seed,
+                        weight=weight_seed,
+                        quantity=quantity_seed,
+                        alert_quantity=quantity_alert_seed,
+                        animal=animal_seed,
+                        buy_price=buy_seed,
+                        sell_price_card=sell_cred_seed,
+                        sell_price_money=sell_money_seed
+                    )
 
                     
-                    self.stdout.write(self.style.NOTICE(f"{name} Cadastrado com sucesso"))
+                    self.stdout.write(self.style.NOTICE(f"{name_seed} Cadastrado com sucesso"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 

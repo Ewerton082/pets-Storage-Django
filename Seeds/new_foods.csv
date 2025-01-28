@@ -1,1 +1,69 @@
 brand,name,weight,quantity,quantity_alert,animal,buy,sell_cred,sell_money
+FVO,chanin peixe,25,0,0,Cão,  ,235.00,225.00
+FVO,chanin mix,25,0,0,Cão,  ,235.00,225.00
+FVO,chanin castrado,25,0,0,Cão,  ,275.00,262.00
+FVO,chanin filhote,25,0,0,Cão,  ,275.00,262.00
+FVO,chanin peixe,10,0,0,Cão,  ,110.00,105.00
+FVO,chanin mix,10,0,0,Cão,  ,110.00,105.00
+FVO,chanin castrado,10,0,0,Cão,  ,110.00,105.00
+FVO,chanin filhote,10,0,0,Cão,  ,110.00,105.00
+
+Adimax,magnus chips,15,0,0,Cão,  ,122.00,117.00
+Adimax,magnus todo dia,15,0,0,Cão,  ,122.00,117.00
+Adimax,magnus chips,20,0,0,Cão,  ,170.00,160.00
+Adimax,magnus todo dia,20,0,0,Cão,  ,170.00,160.00
+Adimax,magnus porte pequeno,15,0,0,Cão,  ,128.00,122.00
+Adimax,magnus filhote,10,0,0,Cão,  ,106.00,100.00
+Adimax,origens adulto RM,15,0,0,Cão,  ,150.00,145.00
+Adimax,origens adulto RP,15,0,0,Cão,  ,165.00,150.00
+Adimax,formula natural adulto,15,0,0,Cão,  ,262.00,252.00
+Adimax,formula natural filhote,15,0,0,Cão,  ,278.00,268.00
+
+Maceió,pedigree adulto RM,20,0,0,Cão,  ,250.00,240.00
+Maceió,pedigree adulto raças peq.,20,0,0,Cão,  ,268.00,258.00
+Maceió,pedigree filhote,20,0,0,Cão,  ,268.00,258.00
+Maceió,whiskas adulto carne,10,0,0,Gato,  ,175.00,170.00
+Maceió,whiskas adulto peixe,10,0,0,Gato,  ,175.00,170.00
+Maceió,whiskas castrado carne,10,0,0,Gato,  ,175.00,170.00
+Maceió,whiskas filhote carne,10,0,0,Gato,  ,175.00,170.00
+
+Purina,dog chow adulto porte pequeno,15,0,0,Cão,  ,222.00,212.00
+Purina,dog chow adulto porte médio,15,0,0,Cão,  ,222.00,212.00
+Purina,dog chow filhote porte pequeno,15,0,0,Cão,  ,178.00,170.00
+Purina,dog chow filhote porte médio,15,0,0,Cão,  ,178.00,170.00
+Purina,dog chow papita,20,0,0,Cão,  ,239.00,229.00
+Purina,dog chow adulto,20,0,0,Cão,  ,222.00,212.00
+Purina,dog chow senior,15,0,0,Cão,  ,177.00,170.00
+Purina,kanina adulto,15,0,0,Cão,  ,152.00,146.00
+Purina,kanina filhote,15,0,0,Cão,  ,162.00,155.00
+Purina,friskies mix carne,10,0,0,Gato,  ,152.00,146.00
+Purina,friskies mix peixe,10,0,0,Gato,  ,152.00,146.00
+Purina,friskies mix frutos do mar,10,0,0,Gato,  ,152.00,146.00
+Purina,friskies delícias da granja,10,0,0,Gato,  ,152.00,146.00
+Purina,friskies castrado carne,10,0,0,Gato,  ,160.00,154.00
+Purina,friskies castrado salmão,10,0,0,Gato,  ,160.00,154.00
+Purina,friskies filhote,10,0,0,Gato,  ,160.00,154.00
+
+Pet Planet,Dog Excelence adulto RM carne,15,0,0,Cão,  ,235.00,225.00
+Pet Planet,Dog Excelence filhote RM carne,15,0,0,Cão,  ,235.00,225.00
+Pet Planet,Dog Excelence adulto RM cordeiro,15,0,0,Cão,  ,235.00,225.00
+Pet Planet,Dog Excelence filhote RM cordeiro,15,0,0,Cão,  ,235.00,225.00
+Pet Planet,Dog Excelence adulto RP cordeiro,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence filhote RP cordeiro,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence adulto RP salmão,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence filhote RP salmão,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence adulto RP frango,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence filhote RP frango,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence adulto Rp premio,10,0,0,Cão,  ,188.00,180.00
+Pet Planet,Dog Excelence filhote Rp premio,10,0,0,Cão,  ,188.00,180.00
+Pet Planet,Dog Excelence multi Cordeiro,12,0,0,Cão,  ,141.00,135.00
+Pet Planet,Dog Excelence light RP premio,10,0,0,Cão,  ,188.00,180.00
+Pet Planet,Dog Excelence light RP super,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence senior RP,10,0,0,Cão,  ,188.00,180.00
+Pet Planet,Dog Excelence senior RP super,10,0,0,Cão,  ,230.00,220.00
+Pet Planet,Dog Excelence senior RM super,15,0,0,Cão,  ,274.00,263.00
+Pet Planet,Cat Excelence carne,10,0,0,Gato,  ,190.00,183.00
+Pet Planet,Cat Excelence castrado carne,10,0,0,Gato,  ,190.00,183.00
+Pet Planet,Cat Excelence castrado salmão,10,0,0,Gato,  ,190.00,183.00
+Pet Planet,Cat Excelence filhote,10,0,0,Gato,  ,190.00,183.00
+
