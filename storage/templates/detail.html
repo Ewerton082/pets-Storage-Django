@@ -23,6 +23,7 @@
             <h2 class="card-title text-center">{{item.food}} {{item.weight}} KG</h2>
             <div class="card-text mt-2">
                 <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}}</p>
+                {% if user.is_superuser %} <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}}</p> {% endif %}
                 <p class="ms-2 lead fw-bold"><span class="text-success">Valor de compra:</span> R$ {{item.buy_price}}</p>
                 <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Cartão:</span> R$ {{item.sell_price_card}}</p>
                 <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Dinheiro:</span> R$ {{item.sell_price_money}}</p>
@@ -63,10 +64,12 @@
                         <p class="fs-3 col-5 text-start">{{item.quantity}} UN.</p>
                     </div>
 
+                    {% if user.is_superuser %}
                     <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade Minima :</p>
+                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade de Alerta:</p>
                         <p class="fs-3 col-5 text-start">{{item.alert_quantity}} UN.</p>
                     </div>
+                    {% endif %}
 
                     <div class="row">
                         <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Compra :</p>

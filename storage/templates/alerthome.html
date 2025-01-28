@@ -1,0 +1,45 @@
+{% extends 'starter.html' %}
+{% load static %}
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped table-hover text-center border border-2 mt-5">
+        <thead>
+            <tr>
+                <th class="responsive-column">Id</th>
+                <th>Ações</th>
+                <th>Nome</th>
+                <th>Peso</th>
+                <th class="responsive-column">Tipo</th>
+                <th>Quantidade</th>
+                <th class="responsive-column">Valor Compra</th>
+                <th>Valor Venda</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if pet_food %}
+                {% for item in pet_food %}
+                    <tr>
+                        <td class="responsive-column">{{ item.id }}</td>
+                        <td><a href="{% url 'storage:Detail' item.pk %}" class="btn btn-primary p-1">Detalhes</a></td>
+                        <td>{{ item.food }}</td>
+                        <td>{{ item.weight }}</td>
+                        <td class="responsive-column">{{ item.animal }}</td>
+                        <td class="text-danger fw-bold">{{ item.quantity }}</td>                            
+                        <td class="responsive-column">{{ item.buy_price }} R$</td>
+                        <td>{{ item.sell_price_card }} R$</td>
+                    </tr>
+
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8"><p class="h2 text-danger">Não encontramos nenhum dado</p></td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

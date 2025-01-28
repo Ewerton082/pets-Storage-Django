@@ -3,17 +3,22 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import redirect
 from accounts.forms import CreateNewUserForm, LoginUserForm
-from core.validation import superuser_required
 
 
-
-class CreateUser(LoginRequiredMixin, CreateView):
+class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = User
     form_class = CreateNewUserForm
     template_name = "form_acc.html"
     context_object_name = "form"
     success_url = reverse_lazy("storage:Home")
+
+    def test_func(self):
+        return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        return redirect("storage:Home")
 
     def form_valid(self, form):
         new_user = form.save(commit=False)
