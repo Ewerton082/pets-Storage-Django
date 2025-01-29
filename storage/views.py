@@ -16,7 +16,7 @@ class HomeStorage(LoginRequiredMixin, ListView):
     context_object_name = "pet_food"
 
     def get_queryset(self):
-        queryset = super().get_queryset().order_by("food")
+        queryset = super().get_queryset().order_by("brand")
         filter_data = self.request.GET.get("filter")
 
         if filter_data:
@@ -31,7 +31,7 @@ class AlertHomeStorage(LoginRequiredMixin, UserPassesTestMixin, ListView):
     context_object_name = "pet_food"
 
     def get_queryset(self):
-        return StorageFoods.objects.filter(alert_quantity__gt=F('quantity'))
+        return StorageFoods.objects.filter(alert_quantity__gt=F('quantity')).order_by("brand")
     
     def test_func(self):
         return self.request.user.is_superuser
