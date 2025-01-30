@@ -5,3 +5,5 @@ db.sqlite3
 .flake8
 
 media/foods/*
+
+.env
