@@ -12,4 +12,5 @@ urlpatterns = [
     path("detail/<int:pk>/update/", UpdateFood.as_view(), name="Update"),
     path("detail/<int:pk>/delete/", DeleteFood.as_view(), name="Delete"),
     path("detail/<int:pk>/transition/", CreateTransition, name="Transition"),
+    path("transitions/", )
 ]

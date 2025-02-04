@@ -1,0 +1,11 @@
+{% extends 'starter.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    {% for item in data %}
+    <p>{{item.user}} - {{item.food}} | {{item.moviment_type}} - {{item.quantity}} [ {{item.date}} ] </p>
+    {% endfor %}
+    
+{% endblock %}

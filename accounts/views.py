@@ -30,7 +30,7 @@ class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form_title"] = "Novo Usuário"
+        context["form_title"] = "Criar Novo Usuário"
         context["form_btn_success"] = "Cadastrar Funcionário"
         context["retrieve"] = "storage:Home"
         return context

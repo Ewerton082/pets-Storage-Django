@@ -188,4 +188,10 @@ def CreateTransition(request, pk):
 
         food_item.save()
         return HttpResponseRedirect(success_url)
-    
+
+
+class ShowTransitions(ListView):
+    template_name = "transitions.html"
+    model = StorageMoviments
+    context_object_name = "data"
+
