@@ -1,5 +1,6 @@
 from django.urls import path
-from storage.views import HomeStorage, CreateFood, DetailFood, CreateBrand, UpdateFood, DeleteFood, CreateTransition, AlertHomeStorage
+from storage.views import HomeStorage, CreateFood, DetailFood, UpdateFood, DeleteFood
+from storage.views import CreateBrand, CreateTransition, AlertHomeStorage, ShowTransitions
 
 app_name = "storage"
 
@@ -12,5 +13,5 @@ urlpatterns = [
     path("detail/<int:pk>/update/", UpdateFood.as_view(), name="Update"),
     path("detail/<int:pk>/delete/", DeleteFood.as_view(), name="Delete"),
     path("detail/<int:pk>/transition/", CreateTransition, name="Transition"),
-    path("transitions/", )
+    path("transitions/", ShowTransitions.as_view(), name="ShowTransition"),
 ]

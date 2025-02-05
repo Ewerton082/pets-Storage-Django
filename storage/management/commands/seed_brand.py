@@ -20,11 +20,11 @@ class Command(BaseCommand):
                     brand_id = row.get("id", "").strip()
                     brand_seller = row.get("seller", "").strip()
                     Brands.objects.create(
-                                        name=brand_name,
-                                        corporate=brand_id,
-                                        seller=brand_seller
-                                        )
-                    
+                        name=brand_name,
+                        corporate=brand_id,
+                        seller=brand_seller
+                    )
+
                     self.stdout.write(self.style.NOTICE(f"{brand_name} Cadastrado com sucesso"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))

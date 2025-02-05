@@ -18,12 +18,12 @@ class Command(BaseCommand):
                 for row in reader:
 
                     brand_seed = row.get("brand", "").strip()
+                    name_seed = row.get("name", "").strip()
                     brand_seed = Brands.objects.filter(name=brand_seed).first()
                     if not brand_seed:
                         self.stdout.write(self.style.ERROR(f"Não encontramos a marca então não adicionamos a {name_seed}"))
                         continue
-                    
-                    name_seed = row.get("name", "").strip()
+
                     weight_seed = row.get("weight", "").strip()
                     quantity_seed = row.get("quantity", "").strip()
                     quantity_alert_seed = row.get("quantity_alert", "").strip()
@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     buy_seed = row.get("buy", "").strip()
                     sell_cred_seed = row.get("sell_cred", "").strip()
                     sell_money_seed = row.get("sell_money", "").strip()
-                    
+
                     StorageFoods.objects.create(
                         brand=brand_seed,
                         food=name_seed,
@@ -44,7 +44,6 @@ class Command(BaseCommand):
                         sell_price_money=sell_money_seed
                     )
 
-                    
                     self.stdout.write(self.style.NOTICE(f"{name_seed} Cadastrado com sucesso"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))

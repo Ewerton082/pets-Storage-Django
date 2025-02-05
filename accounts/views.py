@@ -16,7 +16,7 @@ class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -51,7 +51,6 @@ class LoginUser(LoginView):
         context["form_btn_success"] = "Entrar em sua conta"
         context["retrieve"] = "storage:Home"
         return context
-
 
 
 class LogoutUser(LoginRequiredMixin, LogoutView):

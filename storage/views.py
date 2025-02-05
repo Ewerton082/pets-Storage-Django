@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.db.models import Q, F
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -32,10 +32,10 @@ class AlertHomeStorage(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         return StorageFoods.objects.filter(alert_quantity__gt=F('quantity')).order_by("brand")
-    
+
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -46,8 +46,6 @@ class DetailFood(LoginRequiredMixin, DetailView):
     context_object_name = "item"
 
 
-
-
 class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = NewFood
     success_url = reverse_lazy("storage:Home")
@@ -56,17 +54,20 @@ class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
-        
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form_title"] = "Adicionar Nova Ração"
         context["form_btn_success"] = "Criar Ração"
         context["retrieve"] = "storage:Home"
         return context
-
 
 
 class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -77,7 +78,7 @@ class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -92,14 +93,13 @@ class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return context
 
 
-
 class DeleteFood(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = StorageFoods
     success_url = reverse_lazy("storage:Home")
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -112,7 +112,6 @@ class DeleteFood(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return HttpResponseRedirect(self.success_url)
 
 
-
 class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = Newbrand
     success_url = "../../"
@@ -121,7 +120,7 @@ class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -133,8 +132,6 @@ class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return context
 
 
-
-
 class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = Newbrand
     model = Brands
@@ -143,7 +140,7 @@ class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def handle_no_permission(self):
         return redirect("storage:Home")
 
@@ -160,38 +157,35 @@ class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 def CreateTransition(request, pk):
     if request.method == 'POST':
-        food_item = get_object_or_404(StorageFoods, pk=pk)
         quantidade = int(request.POST.get('quantidade', 0))
         tipo_movimentacao = request.POST.get('tipo_movimentacao')
-        print(tipo_movimentacao)
-        success_url = reverse_lazy('storage:Detail', kwargs={'pk': food_item.pk} )
+        success_url = reverse_lazy('storage:Detail', kwargs={'pk': pk})
 
         if tipo_movimentacao == 'buy':
-            food_item.quantity += quantidade
+            StorageFoods.objects.filter(id=pk).update(quantity=F("quantity") + quantidade)
             StorageMoviments.objects.create(
                 user=request.user,
-                food=food_item,
+                food=StorageFoods.objects.get(pk=pk),
                 quantity=quantidade,
                 moviment_type='Compra',
             )
 
         elif tipo_movimentacao == 'sell':
-            if food_item.quantity >= quantidade:
-                food_item.quantity -= quantidade
-                print(food_item.quantity)
-                StorageMoviments.objects.create(
-                    user=request.user,
-                    food=food_item,
-                    quantity=quantidade,
-                    moviment_type='Venda',
-                )
+            StorageFoods.objects.filter(id=pk).update(quantity=F("quantity") - quantidade)
+            StorageMoviments.objects.create(
+                user=request.user,
+                food=StorageFoods.objects.get(pk=pk),
+                quantity=quantidade,
+                moviment_type='Venda',
+            )
 
-        food_item.save()
         return HttpResponseRedirect(success_url)
 
 
-class ShowTransitions(ListView):
+class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
     template_name = "transitions.html"
     model = StorageMoviments
     context_object_name = "data"
 
+    def get_queryset(self):
+        return StorageMoviments.objects.order_by("-date")
