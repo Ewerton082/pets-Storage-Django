@@ -1,5 +1,5 @@
 SuperUser: Waldo Wa88628974
-normalUser: testenormal asenha123456
+NormalUser: testenormal asenha123456
 
 Criar um novo model para administração onde será mostrado o valor total em produtos que temos e a quantidade de pacotes lembrando que só será visto da pagina administrativa do django
 

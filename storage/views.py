@@ -187,5 +187,15 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = StorageMoviments
     context_object_name = "data"
 
+    def test_func(self):
+        return self.request.user.is_superuser
+
     def get_queryset(self):
-        return StorageMoviments.objects.order_by("-date")
+        queryset =  StorageMoviments.objects.order_by("-date")
+        filter_data = self.request.GET.get("filter")
+
+        if filter_data:
+            queryset = queryset.filter(user__username__icontains=filter_data)
+
+        return queryset
+
