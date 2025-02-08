@@ -5,7 +5,7 @@ from .models import Brands, StorageFoods, StorageMoviments
 
 
 class AdminBrands(admin.ModelAdmin):
-    list_display = ("id", "name", "corporate", "seller")
+    list_display = ("id", "name", "corporate", "seller", "contact_seller")
     search_fields = ("name",)
     ordering = ("id",)
 

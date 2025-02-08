@@ -26,11 +26,12 @@ class NewFood(ModelForm):
 class Newbrand(ModelForm):
     class Meta:
         model = Brands
-        fields = ["name", "corporate", "seller"]
+        fields = ["name", "corporate", "seller", "contact_seller"]
         exclude = ["id",]
 
         widgets = {
             "name": TextInput(attrs={"class": "form-select"}),
             "corporate": TextInput(attrs={"class": "form-control", "placeholder": "xx.xxx.xxx/xxxx-xx"}),
             "seller": TextInput(attrs={"class": "form-control"}),
+            "contact_seller": TextInput(attrs={"class": "form-control"}),
         }

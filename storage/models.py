@@ -21,9 +21,10 @@ class Brands(models.Model):
     name = models.CharField(blank=False, null=False, max_length=70, verbose_name="Nome da Empresa")
     corporate = models.CharField(blank=True, null=True, max_length=30, verbose_name="Razão Social")
     seller = models.CharField(blank=True, null=True, max_length=80, verbose_name="Nome do Vendedor")
+    contact_seller = models.CharField(blank=True, null=True, max_length=15, verbose_name="Numero do Vendedor")
 
     def __str__(self):
-        return self.name
+        return f"{self.name} | {self.seller}"
 
 
 class StorageFoods(models.Model):
