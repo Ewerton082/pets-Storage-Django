@@ -23,11 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 env = environ.Env()
-environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"))
+environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), encoding="UTF-8")
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -82,8 +83,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DATABASE_NAME', default="fallback_key"),
+        'USER': env('DATABASE_USER', default="fallback_key"),
+        'PASSWORD': env('DATABASE_PASSWORD', default="fallback_key"),
+        'HOST': env('DATABASE_HOST', default="fallback_key"),
+        'PORT': "5432"
     }
 }
 
