@@ -1,7 +1,15 @@
-name,id,seller
-
-FVO,"",""
-Admimax,"",Jamerson
-Maceió,"",Kelvin
-Purina,"",""
-Pet Planet,"","Daniel"
+name             ,id ,seller   ,phone
+Adimax           ,"" ,Jamerson ,""
+Purina           ,"" ,Jaedson  ,""
+Pet Planet       ,"" ,Daniel   ,""
+Nutrivale        ,"" ,Felipe   ,""
+Rota Maceió      ,"" ,Kelvin   ,""
+FVO              ,"" ,""       ,""
+S Pessoa         ,"" ,Kadu     ,""
+Objetiva         ,"" ,Iara     ,""
+Cedan            ,"" ,Cris     ,""
+Master           ,"" ,Carlos   ,""
+Qualy            ,"" ,Viana    ,""
+Dapal            ,"" ,Neto     ,""
+Nordescão        ,"" ,Ygor     ,""
+MF Distribuidora ,"" ,Renato   ,""

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 env = environ.Env()
-environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), encoding="UTF-8")
+environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), encoding="UTF8")
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!

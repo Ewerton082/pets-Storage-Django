@@ -19,13 +19,15 @@ class Command(BaseCommand):
                     brand_name = row.get("name", "").strip()
                     brand_id = row.get("id", "").strip()
                     brand_seller = row.get("seller", "").strip()
+                    brand_seller_tel = row.get("phone", "").strip()
                     Brands.objects.create(
                         name=brand_name,
                         corporate=brand_id,
-                        seller=brand_seller
+                        seller=brand_seller,
+                        contact_seller=brand_seller_tel,
                     )
 
-                    self.stdout.write(self.style.NOTICE(f"{brand_name} Cadastrado com sucesso"))
+                    self.stdout.write(self.style.WARNING(f"{self.style.SQL_KEYWORD(brand_name)} Cadastrado com sucesso"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 
