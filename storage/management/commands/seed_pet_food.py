@@ -25,12 +25,12 @@ class Command(BaseCommand):
                         continue
 
                     weight_seed = row.get("weight", "").strip()
-                    quantity_seed = row.get("quantity", "").strip()
-                    quantity_alert_seed = row.get("quantity_alert", "").strip()
+                    quantity_seed = row.get("quantity", "")
+                    quantity_alert_seed = row.get("quantity_alert", "")
                     animal_seed = row.get("animal", "").strip()
-                    buy_seed = row.get("buy", "").strip()
-                    sell_cred_seed = row.get("sell_cred", "").strip()
-                    sell_money_seed = row.get("sell_money", "").strip()
+                    buy_seed = row.get("buy", "")
+                    sell_cred_seed = row.get("sell_cred", "")
+                    sell_money_seed = row.get("sell_money", "")
 
                     StorageFoods.objects.create(
                         brand=brand_seed,

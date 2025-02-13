@@ -27,7 +27,7 @@ class Command(BaseCommand):
                         contact_seller=brand_seller_tel,
                     )
 
-                    self.stdout.write(self.style.WARNING(f"{self.style.SQL_KEYWORD(brand_name)} Cadastrado com sucesso"))
+                    self.stdout.write(self.style.WARNING(f"{brand_name} Cadastrado com sucesso"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 
