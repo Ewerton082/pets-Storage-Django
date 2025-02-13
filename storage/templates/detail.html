@@ -45,9 +45,9 @@
         <div class="row text-center">
             <div class="col col-4 h-75 p-0">
                 {% if item.image %}
-                    <img class="img-thumbnail" src="{{item.image.url}}" alt="{{item.food}}" style="max-height: 500px !important">
+                    <img class="img-thumbnail" src="{{item.image.url}}" alt="{{item.food}}" style="height: 500px !important">
                 {% else %}
-                <img class="img-thumbnail" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" style="max-height: 500px !important">
+                <img class="img-thumbnail" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" style="height: 500px !important">
                 {% endif %}
             </div>
             <div class="col col-8">
