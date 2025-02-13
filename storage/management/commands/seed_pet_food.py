@@ -28,7 +28,7 @@ class Command(BaseCommand):
                     quantity_seed = row.get("quantity", 0)
                     quantity_alert_seed = row.get("quantity_alert", 0)
                     animal_seed = row.get("animal", "").strip()
-                    buy_seed = row.get("buy", "")
+                    buy_seed = row.get("buy", 0)
                     sell_cred_seed = row.get("sell_cred", 0)
                     sell_money_seed = row.get("sell_money", 0)
 
