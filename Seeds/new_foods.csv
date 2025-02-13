@@ -1,39 +1,39 @@
 brand,name,weight,quantity,quantity_alert,animal,buy,sell_cred,sell_money
 
-Purina,Dog Chow Adulto Raças Pequenas,15.1,Cão,,165.00,158.00
-Purina,Dog Chow Adulto Raças Médias,15.1,Cão,,165.00,158.00
-Purina,Dog Chow Filhote Raças Pequenas,15.1,Cão,,178.00,170.00
-Purina,Dog Chow Filhote Raças Médias,15.1,Cão,,178.00,170.00
+Purina,Dog Chow Adulto Raças Pequenas,15.1,,,Cão,,165.00,158.00
+Purina,Dog Chow Adulto Raças Médias,15.1,,,Cão,,165.00,158.00
+Purina,Dog Chow Filhote Raças Pequenas,15.1,,,Cão,,178.00,170.00
+Purina,Dog Chow Filhote Raças Médias,15.1,,,Cão,,178.00,170.00
 Purina,dog chow papita,20.1,,,Cão,,239.00,229.00
-Purina,Dog Chow Adulto Raças Pequenas,20.1,Cão,,222.00,212.00
-Purina,Dog Chow Adulto Raças Médias,20.1,Cão,,222.00,212.00
+Purina,Dog Chow Adulto Raças Pequenas,20.1,,,Cão,,222.00,212.00
+Purina,Dog Chow Adulto Raças Médias,20.1,,,Cão,,222.00,212.00
 Purina,dog chow senior,15.1,,,Cão,,177.00,170.00
 Purina,kanina adulto,15.1,,,Cão,,152.00,146.00
 Purina,kanina filhote,20.1,,,Cão,,162.00,155.00
-Purina,Friskies Carne,10.1,Gato,,152.00,146.00
-Purina,Friskies Peixe,10.1,Gato,,152.00,146.00
-Purina,Friskies Frango,10.1,Gato,,152.00,146.00
-Purina,Friskies Castrado,10.1,Gato,,160.00,154.00
-Purina,Friskies Filhote,10.1,Gato,,160.00,154.00
-Purina,Friskies Carne,20.0,,,Gato,
-Purina,Friskies Peixe,20.0,Gato,
-Purina,Cat Chow Carne,10.1,Gato,,160.00,154.00
-Purina,Cat Chow Peixe,10.1,Gato,,160.00,154.00
-Purina,Cat Chow Castrado,10.1,Gato,,160.00,154.00
+Purina,Friskies Carne,10.1,,,Gato,,152.00,146.00
+Purina,Friskies Peixe,10.1,,,Gato,,152.00,146.00
+Purina,Friskies Frango,10.1,,,Gato,,152.00,146.00
+Purina,Friskies Castrado,10.1,,,Gato,,160.00,154.00
+Purina,Friskies Filhote,10.1,,,Gato,,160.00,154.00
+Purina,Friskies Carne,20.0,,,Gato,,,,
+Purina,Friskies Peixe,20.0,,,Gato,,,,
+Purina,Cat Chow Carne,10.1,,,Gato,,160.00,154.00
+Purina,Cat Chow Peixe,10.1,,,Gato,,160.00,154.00
+Purina,Cat Chow Castrado,10.1,,,Gato,,160.00,154.00
 Purina,cat chow filhote,10.1,,,Gato,,170.00,162.00
 Purina,gatsy,20.1,,,Cão,,212.00,204.00
 
-Objetiva,faro cão adulto raças pequenas,15.1,,,Cão,,146.00,140.00
-Objetiva,faro cão filhote,15.1,,,Cão,,146.00,140.00
+Objetiva,faro adulto raças pequenas,15.1,,,Cão,,146.00,140.00
+Objetiva,faro filhote,15.1,,,Cão,,146.00,140.00
 Objetiva,granplus R.P filhote cão,15.1,,,Cão,,178.00,170.00
 Objetiva,granplus R.P adulto cão,15.1,,,Cão,,178.00,170.00
 Objetiva,granplus choice adulto rm,15.1,,,Cão,,165.00,158.00
 Objetiva,guabi natural adulto rp,20.1,,,Cão,,366.00,355.00
 Objetiva,guabi natural filhote rp,20.1,,,Cão,,366.00,355.00
 Objetiva,faro cat,20.1,,,Gato,,215.00,205.00
-Objetiva,Granplus Cat Castrado Salmão,10.1,Gato,,185.00,178.00
-Objetiva,Granplus Cat Castrado Frango,10.1,Gato,,185.00,178.00
-Objetiva,Granplus Cat Castrado Carne,10.1,Gato,,185.00,178.00
+Objetiva,Granplus Cat Castrado Salmão,10.1,,,Gato,,185.00,178.00
+Objetiva,Granplus Cat Castrado Frango,10.1,,,Gato,,185.00,178.00
+Objetiva,Granplus Cat Castrado Carne,10.1,,,Gato,,185.00,178.00
 Objetiva,granplus cat choice,10.1,,,Gato,,150.00,143.00
 
 Cedan,bisterdog filhote,15.1,,,Cão,,108.00,105.00
@@ -42,16 +42,16 @@ Cedan,cedan mix,15.1,,,Cão,,85.00,82.00
 Cedan,perrus filhote,10.1,,,Gato,,119.00,115.00
 Cedan,perrus castrado,10.1,,,Gato,,119.00,115.00
 Cedan,open castrado,10.1,,,Gato,,85.00,80.00
-Cedan,Open Mix,10.1,Gato,,81.00,76.00
-Cedan,Open Atum,10.1,Gato,,81.00,76.00
+Cedan,Open Mix,10.1,,,Gato,,81.00,76.00
+Cedan,Open Atum,10.1,,,Gato,,81.00,76.00
 Cedan,cedan cat,10.1,,,Gato,,75.00,70.00
 
 S pessoa,tuticanis,15.1,,,Cão,,85.00,82.00
 
-Adimax,Magnus Magnus Chips,15.1,Cão,,122.00,117.00
-Adimax,Magnus Todo Dia,15.1,Cão,,122.00,117.00
-Adimax,Magnus Magnus Chips,20.1,Cão,,212.00,200.00
-Adimax,Magnus Todo Dia,25.1,Cão,,,
+Adimax,Magnus Magnus Chips,15.1,,,Cão,,122.00,117.00
+Adimax,Magnus Todo Dia,15.1,,,Cão,,122.00,117.00
+Adimax,Magnus Magnus Chips,20.1,,,Cão,,212.00,200.00
+Adimax,Magnus Todo Dia,25.1,,,Cão,,,
 Adimax,magnus porte pequeno,15.1,,,Cão,,128.00,122.00
 Adimax,Magnus Filhote,10.1,,,Cão,,106.00,100.00
 Adimax,origens adulto RM,15.1,,,Cão,,150.00,145.00
@@ -60,14 +60,14 @@ Adimax,formula natural adulto,15.1,,,Cão,,262.00,252.00
 Adimax,formula natural filhote,15.1,,,Cão,,278.00,268.00
 Adimax,gatan Mix,10.1,,,Gato,,85.00,80.00
 
-FVO,Chanin Peixe 25.1,Gato,,235.00,225.00
-FVO,Chanin Mix 25.1,Gato,,235.00,225.00
-FVO,Chanin Castrado 25.1,Gato,,275.00,262.00
-FVO,Chanin Filhote 25.1,Gato,,275.00,262.00
-FVO,Chanin Castrado 10.1,Gato,,110.00,105.00
-FVO,Chanin Filhote 10.1,Gato,,110.00,105.00
-FVO,Chanin Peixe 10.1,Gato,,95.00,90.00
-FVO,Chanin Mix 10.1,Gato,,95.00,90.00
+FVO,Chanin Peixe 25.1,Gato,,,Gato,,235.00,225.00
+FVO,Chanin Mix 25.1,Gato,,,Gato,,235.00,225.00
+FVO,Chanin Castrado 25.1,Gato,,,Gato,,275.00,262.00
+FVO,Chanin Filhote 25.1,Gato,,,Gato,,275.00,262.00
+FVO,Chanin Castrado 10.1,Gato,,,Gato,,110.00,105.00
+FVO,Chanin Filhote 10.1,Gato,,,Gato,,110.00,105.00
+FVO,Chanin Peixe 10.1,Gato,,,Gato,,95.00,90.00
+FVO,Chanin Mix 10.1,Gato,,,Gato,,95.00,90.00
 
 Rota,whiskas carne,10.1,,,Gato,,175.00,170.00
 Rota,whiskas peixe,10.1,,,Gato,,175.00,170.00
@@ -124,4 +124,4 @@ Pet Planet,Excelence Adulto Raças Pequenas Premio Salmão,10.1,,,Cão,,188.00,1
 Pet Planet,Excelence Adulto Raças Pequenas Premio Cordeiro,10.1,,,Cão,,188.00,180.00
 Pet Planet,Excelence Filhote Raças Pequenas Premio,10.1,,,Cão,,188.00,180.00
 Pet Planet,Excelence Multi Cordeiro,12.1,,,Cão,,141.00,135.00
-Pet Planet,Excelence Light Raças Pequenas Premio,10.1,,Cão,,,188.00,180.00
+Pet Planet,Excelence Light Raças Pequenas Premio,10.1,,,Cão,,188.00,180.00
