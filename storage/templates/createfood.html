@@ -1,0 +1,95 @@
+{% extends 'starter.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container-fluid mx-auto border border-2 rounded p-4 bg-light mt-4" style="max-width: 550px;">
+        <h1 class="p-1 text-center">{{form_title}}</h1>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <table class="table table-borderless align-center">
+                <tr>
+                    <td class="w-50">
+                        <p class="mb-2">{{form.brand.label}}</p>
+                        <div>{{form.brand}}</div>
+                    </td>
+                    <td class="w-50 ">
+                        <p class="mb-2">{{form.weight.label}}</p>
+                        <div>{{form.weight}}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="d-flex flex-row" >
+                            <div class="w-75">
+                                <p class="mb-2">{{form.food.label}}</p>
+                                <div>{{form.food}}</div>
+                            </div>
+                            <div class="w-25 ms-3">
+                                <p class="mb-2">{{form.animal.label}}</p>
+                                <div>{{form.animal}}</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="w-50">
+                        <p class="mb-2">{{form.quantity.label}}</p>
+                        <div>{{form.quantity}}</div>
+                    </td>
+                    <td class="w-50 ">
+                        <p class="mb-2">{{form.alert_quantity.label}}</p>
+                        <div>{{form.alert_quantity}}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="mb-2 text-center">{{form.buy_price.label}}</p>
+                        <div class="input-group">
+                            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-coin text-success" viewBox="0 0 16 16">
+                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                              </svg></span>
+                            {{form.buy_price}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="mb-2">{{form.sell_price_card.label}}</p>
+                        <div class="input-group">
+                            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-coin text-danger" viewBox="0 0 16 16">
+                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                              </svg></span>
+                            {{form.sell_price_card}}
+                        </div>
+                    </td>
+                    <td>
+                        <p class="mb-2">{{form.sell_price_money.label}}</p>
+                        <div class="input-group">
+                            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-coin text-danger" viewBox="0 0 16 16">
+                                <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                              </svg></span>
+                            {{form.sell_price_money}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="mb-2 text-center">{{form.image.label}}</p>
+                        {{form.image}}
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="{{form_btn_success}}" class="w-75 mt-3 btn btn-lg btn-success mx-auto d-flex p-2">
+        </form>
+    </div>
+
+    <div class="container-fluid mx-auto my-4 text-center">
+        <a href="{% url retrieve %}" class="btn btn-primary w-50 p-2" style="max-width: 400px;">Voltar ao inicio</a>
+    </div>
+{% endblock %}

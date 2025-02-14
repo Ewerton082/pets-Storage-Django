@@ -12,9 +12,10 @@
     {% block settings %} {% endblock %}
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark mx-auto">
             <div class="container-fluid">
+                
                 {% if user.is_authenticated %}
                     <h1 class="navbar-brand fs-2 ms-3">Pet's Food - {{user.username}}</h1>
                 {% else %}
@@ -23,7 +24,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="main_navbar">
+                <div class="collapse navbar-collapse d-lg-flex justify-content-end me-4" id="main_navbar">
                     <ul class="navbar-nav ms-5">
                         {% if user.is_authenticated %}
                         <li class="nav-item mx-2 fs-5"><a href="{% url 'storage:Home' %}" class="nav-link">Estoque</a></li>
@@ -105,7 +106,7 @@
         {% endblock %}
     </main>
     
-    <footer class="bg-dark text-light text-center py-3 mt-3 border-top border-dark ">
+    <footer class="bg-dark text-light text-center py-2 mt-3 border-top border-dark ">
         <p class="mb-0">© 2025. Todos os direitos reservados.</p>
     </footer>
 

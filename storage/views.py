@@ -49,7 +49,7 @@ class DetailFood(LoginRequiredMixin, DetailView):
 class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = NewFood
     success_url = reverse_lazy("storage:Home")
-    template_name = "create.html"
+    template_name = "createfood.html"
     context_object_name = "form"
 
     def test_func(self):

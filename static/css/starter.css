@@ -2,8 +2,16 @@ html, body{
     background-image: url(../img/Background.jpg);
 }
 
+nav{
+    max-width: 1920px !important; 
+}
+
 footer{
     position: fixed !important;
     bottom: 0 !important;
     width: 100%;
+}
+
+#name-input{
+    max-width: 275px;
 }
