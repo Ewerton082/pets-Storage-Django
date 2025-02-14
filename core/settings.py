@@ -30,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["44.215.251.167"]
+ALLOWED_HOSTS = ["44.215.251.167", "localhost", "127.0.0.1"]
 
 
 # Application definition
