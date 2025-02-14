@@ -6,4 +6,6 @@ db.sqlite3
 
 media/foods/*
 
+media
+
 .env

@@ -20,14 +20,20 @@ class Command(BaseCommand):
                     brand_id = row.get("id", "").strip()
                     brand_seller = row.get("seller", "").strip()
                     brand_seller_tel = row.get("phone", "").strip()
-                    Brands.objects.create(
+                    obj, created = Brands.objects.get_or_create(
                         name=brand_name,
-                        corporate=brand_id,
-                        seller=brand_seller,
-                        contact_seller=brand_seller_tel,
+                        defaults={
+                            "corporate": brand_id,
+                            "seller": brand_seller,
+                            "contact_seller": brand_seller_tel,
+                        }
                     )
 
-                    self.stdout.write(self.style.WARNING(f"{brand_name} Cadastrado com sucesso"))
+                    if created:
+                        self.stdout.write(self.style.NOTICE(f"A Empresa {brand_name} foi criada!"))
+                    else:
+                        self.stdout.write(self.style.WARNING(f"Já existia no sistema essa empresa"))
+                    
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 
