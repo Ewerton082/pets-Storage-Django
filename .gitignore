@@ -1,11 +1,12 @@
 venv
-
 db.sqlite3
 
 .flake8
 
 media/foods/*
-
 media
 
-.env
+.env*
+**/__pycache__/
+__pycache__/
+
