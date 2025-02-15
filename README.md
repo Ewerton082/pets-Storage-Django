@@ -47,3 +47,9 @@ docker compose up -d
 # Pare a aplicação, caso necessário
 docker compose down
 ```
+
+4. **Crie um usuário admin**
+
+```bash
+docker-compose exec app python manage.py createsuperuser
+```
