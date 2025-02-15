@@ -43,4 +43,7 @@ docker compose up
 
 # Rode em segundo plano, se preferir
 docker compose up -d
+
+# Pare a aplicação, caso necessário
+docker compose down
 ```
