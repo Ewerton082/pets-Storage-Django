@@ -53,3 +53,7 @@ docker compose down
 ```bash
 docker-compose exec app python manage.py createsuperuser
 ```
+
+5. **Abra a aplicação no seu navegador**
+
+Acesse: http://localhost:8000
