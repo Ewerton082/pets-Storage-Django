@@ -3,3 +3,22 @@
         display: none;
     }
 }
+
+#table_foods{
+    max-width: 1500px;
+}
+
+
+.my-buttom:hover{
+    background-color: #0d6dfdad !important;
+    color: rgba(255, 255, 255, 0.507);
+    border-width: 3px;
+    
+}
+
+.my-buttom_alert:hover{
+    background-color: #dc3546ad !important;
+    color: rgba(255, 255, 255, 0.507);
+    border-width: 3px;
+    
+}

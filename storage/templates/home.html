@@ -8,45 +8,50 @@
 {% block content %}
     <div class="container-sm">
         <form class="row my-4 mx-auto" action="" method="get">
-            <input class="col col-6 me-5 p-1 rounded-pill" type="text" name="filter" id="filter" placeholder="Filtrar ração" class="form-control">
-            <input class="btn btn-primary p-1 col col-3" type="submit" value="Filtrar Dados">
+            <input class="col col-5 me-5 p-1 rounded" type="text" name="filter" id="filter" placeholder="Filtrar ração" class="form-control">
+            <input class="btn btn-primary p-1 col col-5 " type="submit" value="Filtrar Dados">
         </form>
     </div>
 
-    <div class="p-1 bg-light">
-        <table class="table table-striped table-hover text-center align-middle">
+    <div class="p-1 bg-light mx-auto mb-5" id="table_foods">
+        <table class="table table-sm table-striped table-hover text-center align-middle">
             <thead>
                 <tr>
-                    <th>Ações</th>
                     <th>Nome</th>
-                    <th> Quilos </th>
+                    <th>Peso</th>
                     <th class="responsive-column">Tipo</th>
                     <th>QTD</th>
                     {% if user.is_superuser %}
                         <th class="responsive-column">Valor Compra</th>
                     {% endif %}
                     <th>Valor Venda</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% if pet_food %}
                     {% for item in pet_food %}
                         <tr class="border-top border-dark" >
-                            <td><a href="{% url 'storage:Detail' item.pk %}" class="btn btn-primary p-1">Detalhes</a></td>
                             <td>{{ item.food }}</td>
                             <td>{{ item.weight }} KG</td>
                             <td class="responsive-column">{{ item.animal }}</td>
                             <td>{{ item.quantity }}</td>
                             {% if user.is_superuser %}                            
-                                <td class="responsive-column">{{ item.buy_price|floatformat:2 }} R$</td>
+                                <td class="responsive-column">R$ {{ item.buy_price|floatformat:2 }}</td>
                             {% endif %}
-                            <td>{{ item.sell_price_card|floatformat:2 }} R$</td>
+                            <td>R$ {{ item.sell_price_card|floatformat:2 }}</td>
+                            <td><a href="{% url 'storage:Detail' item.pk %}" class="btn btn-primary p-1 px-3 my-buttom">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                </svg>
+                            </a></td>
                         </tr>
 
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td colspan="8"><p class="display-1 text-danger">Não encontramos nenhum dado</p></td>
+                        <td colspan="8"><p class="h2 p-2 text-danger">Não Encontramos Nenhum Produto Com Base Nesses Filtros</p></td>
                     </tr>
                 {% endif %}
             </tbody>

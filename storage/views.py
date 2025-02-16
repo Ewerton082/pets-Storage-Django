@@ -62,12 +62,6 @@ class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         response = super().form_valid(form)
         return response
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Adicionar Nova Ração"
-        context["form_btn_success"] = "Criar Ração"
-        context["retrieve"] = "storage:Home"
-        return context
 
 
 class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

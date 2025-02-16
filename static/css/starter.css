@@ -1,8 +1,13 @@
+@font-face {
+    font-family: fairplay;
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
 html, body{
     background-image: url(../img/Background.jpg);
 }
 
-nav{
+nav, main{
     max-width: 1920px !important; 
 }
 
@@ -14,4 +19,15 @@ footer{
 
 #name-input{
     max-width: 275px;
+}
+
+.title{
+    font-family: fairplay;
+    font-weight: bold;
+}
+
+.retrieve_buttom{
+    padding: 0 !important;
+    text-align: center;
+    margin: 0;
 }
