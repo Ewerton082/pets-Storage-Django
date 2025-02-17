@@ -109,7 +109,7 @@ class DeleteFood(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = Newbrand
     success_url = "../../"
-    template_name = "create.html"
+    template_name = "createbrand.html"
     context_object_name = "form"
 
     def test_func(self):
