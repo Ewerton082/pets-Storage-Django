@@ -1,6 +1,11 @@
 {% extends 'starter.html' %}
 {% load static %}
 
+{% block title %}Registro de Transações{% endblock %}
+
+{% block settings %} 
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -11,12 +16,12 @@
             </form>
         </div>
 
-        <table class="table table align-center table-striped-collumns mx-auto mt-2 align-middle border border-dark p-1">
+        <table class="table table align-center table-striped-collumns mx-auto mt-2 align-middle border border-dark p-1" id="table_foods">
             <thead>
                 <tr>
                     <th>Vendedor</th>
                     <th>Produto</th>
-                    <th>Quantidade</th>
+                    <th class="text-center">Quantidade</th>
                     <th>Operação</th>
                     <th class="responsive-column">Data e Hora</th>
                 </tr>
@@ -25,13 +30,13 @@
                 {% if data %}
                     {% for item in data %}
                         <tr>
-                            <td>{{item.user}}</td>
-                            <td>{{item.food}}</td>
+                            <td class="fw-bold">{{item.user}}</td>
+                            <td >{{item.food}}</td>
                             {% if item.moviment_type == "Venda"%}
-                                <td class="text-danger fw-bold">{{item.quantity}}</td>
+                                <td class="text-danger fw-bold text-center">{{item.quantity}}</td>
                                 <td class="text-danger fw-bold">{{item.moviment_type}}</td>
                             {% elif item.moviment_type == "Compra"%}
-                                <td class="text-success fw-bold">{{item.quantity}}</td>
+                                <td class="text-success fw-bold text-center">{{item.quantity}}</td>
                                 <td class="text-success fw-bold">{{item.moviment_type}}</td>
                             {% endif %}
                             <td class="responsive-column">{{item.date}}</td>
