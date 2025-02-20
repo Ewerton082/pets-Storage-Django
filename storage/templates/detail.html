@@ -34,9 +34,13 @@
             </div>
             <div class="card-text mt-2">
                 <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}}</p>
-                {% if user.is_superuser %} <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}}</p> {% endif %}
-                <p class="ms-2 lead fw-bold"><span class="text-success">Valor de compra:</span> R$ {{item.buy_price|floatformat:2}}</p>
-                <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Cartão:</span> R$ {{item.sell_price_card|floatformat:2}}</p>
+                {% if user.is_superuser %}
+                    <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}}</p>
+                {% endif %}
+                {% if user.is_superuser %} 
+                    <p class="ms-2 lead fw-bold"><span class="text-success">Valor de compra:</span> R$ {{item.buy_price|floatformat:2}}</p>
+                {% endif %}
+                    <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Cartão:</span> R$ {{item.sell_price_card|floatformat:2}}</p>
                 <p class="ms-2 lead fw-bold"><span class="text-danger">Valor de Venda Dinheiro:</span> R$ {{item.sell_price_money|floatformat:2}}</p>
             </div>
         </div>
@@ -92,10 +96,12 @@
                     </div>
                     {% endif %}
 
+                    {% if user.is_superuser %}
                     <div class="row">
                         <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Compra :</p>
                         <p class="fs-3 col-5 text-start text-success">{{item.buy_price|floatformat:2}} R$</p>
                     </div>
+                    {% endif %}
 
                     <div class="row">
                         <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda crédito :</p>

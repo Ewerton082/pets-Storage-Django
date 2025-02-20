@@ -10,7 +10,7 @@ from accounts.forms import CreateNewUserForm, LoginUserForm
 class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = User
     form_class = CreateNewUserForm
-    template_name = "form_acc.html"
+    template_name = "register_template.html"
     context_object_name = "form"
     success_url = reverse_lazy("storage:Home")
 
@@ -28,29 +28,17 @@ class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         new_user.save()
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Criar Novo Usuário"
-        context["form_btn_success"] = "Cadastrar Funcionário"
-        context["retrieve"] = "storage:Home"
-        return context
 
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
     context_object_name = "form"
-    template_name = "form_acc.html"
+    template_name = "login_template.html"
     success_url = reverse_lazy("storage:Home")
 
     def get_success_url(self):
         return self.success_url
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Fazer Login"
-        context["form_btn_success"] = "Entrar em sua conta"
-        context["retrieve"] = "storage:Home"
-        return context
 
 
 class LogoutUser(LoginRequiredMixin, LogoutView):
