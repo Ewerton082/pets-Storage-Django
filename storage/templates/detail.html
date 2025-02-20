@@ -1,6 +1,9 @@
 {% extends 'starter.html' %}
 {% load static %}
 
+{% block title %} Detalhes da {{item.food}} {% endblock %}
+
+
 {% block settings %}
     {% if not user.is_superuser %}
         <link rel="stylesheet" href="{% static 'css/detail.css' %}">
@@ -9,18 +12,26 @@
 
 
 {% block content %}
-    <div class="container-md mx-auto my-4 bg-light text-center rounded-pill border border-dark">
-        <h1 class="p-1">Detalhes da {{item.food}}</h1>
-    </div>
 
     <div class="container-sm border border-2 rounded p-4 d-lg-none bg-light" style="max-width: 500px;">
+        <h1 class="p-1">Detalhes da {{item.food}}</h1>
         <div class="col card w50">
             {% if item.image %}
                 <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
             {% else %}
                 <img class="card-img-top" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" height="225">
             {% endif %}
-            <h2 class="card-title text-center">{{item.food}} {{item.weight}} KG</h2>
+            <div class="card-title">
+                <h1 class="fs-1 fw-bold col-9">{{item.food}} | {{item.weight}} KG</h1>
+                <h1>
+                    <a href="{% url 'storage:Home' %}" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                          </svg>
+                    </a>
+                </h1>
+            </div>
             <div class="card-text mt-2">
                 <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}}</p>
                 {% if user.is_superuser %} <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}}</p> {% endif %}
@@ -41,7 +52,7 @@
         </div>
     </div>
 
-    <div class="d-none d-lg-block container-flex m-4 align-self-center bg-light border border-1 p-5 border-black rounded">
+    <div class="d-none d-lg-block container-xl my-5 align-self-center bg-light border border-1 p-5 border-black rounded mybox">
         <div class="row text-center">
             <div class="col col-4 h-75 p-0">
                 {% if item.image %}
@@ -52,7 +63,17 @@
             </div>
             <div class="col col-8">
                 <div class="container-sm text-center">
-                    <h1 class="fs-1 fw-bold col-12">{{item.food}} | {{item.weight}} KG</h1>
+                    <div class="col-12 d-flex flex-row">
+                        <h1 class="fs-1 fw-bold col-9">{{item.food}} | {{item.weight}} KG</h1>
+                        <h1>
+                            <a href="{% url 'storage:Home' %}" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                                  </svg>
+                            </a>
+                        </h1>
+                    </div>
                     <hr class="col-12 border-2 border-dark">
                     <div class="row">
                         <p class="fs-3 fw-semibold col-5 text-end me-3">Distribuidora :</p>
@@ -107,10 +128,6 @@
         </div>
         
     </div>
-    <div class="container-sm mx-auto text-center">
-        <a href="{% url 'storage:Home' %}" class="fs-3 container-sm btn btn-primary mx-auto mt-4" style="max-width: 450px;">Voltar Ao Inicio</a>
-    </div>
-
 
     <div class="modal fade" id="buy_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buy_model_label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
