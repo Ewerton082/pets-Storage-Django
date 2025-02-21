@@ -63,7 +63,6 @@ class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return response
 
 
-
 class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = NewFood
     model = StorageFoods
@@ -185,11 +184,10 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
 
     def get_queryset(self):
-        queryset =  StorageMoviments.objects.order_by("-date")
+        queryset = StorageMoviments.objects.order_by("-date")
         filter_data = self.request.GET.get("filter")
 
         if filter_data:
             queryset = queryset.filter(user__username__icontains=filter_data)
 
         return queryset
-

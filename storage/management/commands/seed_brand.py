@@ -32,8 +32,7 @@ class Command(BaseCommand):
                     if created:
                         self.stdout.write(self.style.NOTICE(f"A Empresa {brand_name} foi criada!"))
                     else:
-                        self.stdout.write(self.style.WARNING(f"Já existia no sistema essa empresa"))
-                    
+                        self.stdout.write(self.style.WARNING("Já existia no sistema essa empresa"))
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 

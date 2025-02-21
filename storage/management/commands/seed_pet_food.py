@@ -34,22 +34,20 @@ class Command(BaseCommand):
 
                     obj, created = StorageFoods.objects.get_or_create(food=name_seed,
                                                                       weight=weight_seed,
-                                                        defaults={
-                                                            "brand": brand_bd,
-                                                            "animal": animal_seed,
-                                                            "quantity": quantity_seed,
-                                                            "alert_quantity": quantity_alert_seed,
-                                                            "buy_price": buy_seed,
-                                                            "sell_price_card": sell_cred_seed,
-                                                            "sell_price_money": sell_money_seed,
-                                                        })
-
+                                                                      defaults={
+                                                                          "brand": brand_bd,
+                                                                          "animal": animal_seed,
+                                                                          "quantity": quantity_seed,
+                                                                          "alert_quantity": quantity_alert_seed,
+                                                                          "buy_price": buy_seed,
+                                                                          "sell_price_card": sell_cred_seed,
+                                                                          "sell_price_money": sell_money_seed,
+                                                                      })
 
                     if created:
                         self.stdout.write(self.style.SUCCESS(f"Ração '{name_seed}' (Peso: {weight_seed}kg) criada!"))
                     else:
                         self.stdout.write(self.style.WARNING(f"Ração '{name_seed}' já existia no banco de dados."))
-                    
 
                 self.stdout.write(self.style.SUCCESS("Importação concluida."))
 

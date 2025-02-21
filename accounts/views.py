@@ -29,7 +29,6 @@ class CreateUser(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
 
-
 class LoginUser(LoginView):
     form_class = LoginUserForm
     context_object_name = "form"
@@ -38,7 +37,6 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return self.success_url
-
 
 
 class LogoutUser(LoginRequiredMixin, LogoutView):
