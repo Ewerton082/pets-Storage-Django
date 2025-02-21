@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  web:
+    build:
+      context: ./app
+    command: uwsgi --ini uwsgi.ini
+    volumes:
+      - ./app:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    deppends_on:
+      - db
   db:
     image: postgres:16
     restart: always
@@ -18,21 +32,7 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
-    build: .
-    restart: always
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - .env
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    volumes:
-      - .:/app
-    ports:
-      - "8000:8000"
-    command: ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
-
 volumes:
   postgres_data:
+  static_volumes:
+  media_volumes:
