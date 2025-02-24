@@ -11,7 +11,7 @@ RUN apt update && apt install -y \
     gcc \
     && apt clean && rm -rf /var/lib/apt/lists/*
 
-COPY ./app/requirements.txt .
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
