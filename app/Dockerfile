@@ -18,6 +18,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
+RUN python ../manage.py collectstatic --noinput
 
 CMD ["uwsgi", "--ini", "uwsgi.ini"]
