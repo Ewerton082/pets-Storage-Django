@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-WORKDIR /app
+WORKDIR .
 
 RUN apt update && apt install -y \
     build-essential \
@@ -18,6 +18,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN python pets-Storage-Django/manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
-CMD ["uwsgi", "--ini", "app/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "uwsgi.ini"]
