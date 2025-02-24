@@ -15,10 +15,9 @@ COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN dir
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
+RUN python pets-Storage-Django/manage.py collectstatic --noinput
 
 CMD ["uwsgi", "--ini", "app/uwsgi.ini"]
