@@ -1,8 +1,0 @@
-SuperUser: Waldo Wa88628974
-NormalUser: testenormal asenha123456
-
-Criar um novo model para administração onde será mostrado o valor total em produtos que temos e a quantidade de pacotes lembrando que só será visto da pagina administrativa do django
-
-ver tbm melhor sobre hospedagem e ver se vale por um dominio proprio pela AWS
-
-Vai que é tua mlk :D
