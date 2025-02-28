@@ -66,7 +66,7 @@ class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = NewFood
     model = StorageFoods
-    template_name = "create.html"
+    template_name = "createfood.html"
     context_object_name = "form"
 
     def test_func(self):
@@ -128,7 +128,7 @@ class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = Newbrand
     model = Brands
-    template_name = "create.html"
+    template_name = "createbrand.html"
     context_object_name = "form"
 
     def test_func(self):

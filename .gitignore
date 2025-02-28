@@ -11,3 +11,6 @@ media
 __pycache__/
 
 mydatabase
+
+static/admin
+staticfiles

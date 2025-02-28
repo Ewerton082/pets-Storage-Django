@@ -28,7 +28,7 @@ environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), e
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=True)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -82,19 +82,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('POSTGRES_DB', default="fallback_key"),
+        'USER': env('POSTGRES_USER', default="fallback_key"),
+        'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
+        'HOST': env('DATABASE_HOST', default="fallback_key"),
+        'PORT': env('DATABASE_PORT', default="fallback_key")
     }
-
-    # default': {
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'NAME': env('DATABASE_NAME', default="fallback_key"),
-    #    'USER': env('DATABASE_USER', default="fallback_key"),
-    #    'PASSWORD': env('DATABASE_PASSWORD', default="fallback_key"),
-    #    'HOST': env('DATABASE_HOST', default="fallback_key"),
-    #    'PORT': "5432"
-    # }
 }
 
 
@@ -132,18 +127,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = "media/"
 MEDIA_URL = '/media/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = "accounts:Login"
