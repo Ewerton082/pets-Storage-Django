@@ -1,0 +1,5 @@
+
+no Register faltou por o input se é super usuario ou não
+
+a pagina de detalhes tá toda zoada
+

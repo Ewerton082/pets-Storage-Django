@@ -14,7 +14,7 @@
         <h1 class="h1 text-center my-3">Realizar Login</h1>
         <hr>
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-            <div class="row w-75 mx-auto">
+            <div class="row w-75 mx-auto my-input">
                 <span class="fs-5 fw-semibold text-center mb-1">{{form.username.label}}</span>
                 <div class="input-group mb-3">
                     <span class="input-group-text">
@@ -25,7 +25,7 @@
                     {{form.username}}
                 </div>
             </div>
-            <div class="row w-75 mx-auto">
+            <div class="row w-75 mx-auto my-input">
                 <span class="fs-5 fw-semibold text-center mb-1">{{form.password.label}}</span>
                 <div class="input-group mb-3">
                     <span class="input-group-text">
@@ -36,7 +36,7 @@
                     {{form.password}}
                 </div>
             </div>
-            <div class="row w-75 mx-auto">
+            <div class="row w-175 mx-auto my-input">
                 {% if form.non_field_errors %}
                     <span class="fw-5 text-danger fw-semibold">{{ form.non_field_errors|striptags }}</span>
                 {% endif %}
