@@ -28,10 +28,9 @@ environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), e
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = env("DEBUG", default=True)
-DEBUG = True
+DEBUG = env("DEBUG_MODE", default=True)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", env("HOST", default="localhost")]
 
 
 # Application definition
@@ -83,18 +82,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 
-    #'default': {
-    #    'NAME': env('POSTGRES_DB', default="fallback_key"),
-    #    'USER': env('POSTGRES_USER', default="fallback_key"),
-    #    'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
-    #    'HOST': env('DATABASE_HOST', default="fallback_key"),
-    #    'PORT': env('DATABASE_PORT', default="fallback_key")
-    #}
+    'default': {
+        'NAME': env('POSTGRES_DB', default="fallback_key"),
+        'USER': env('POSTGRES_USER', default="fallback_key"),
+        'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
+        'HOST': env('DATABASE_HOST', default="fallback_key"),
+        'PORT': env('DATABASE_PORT', default="fallback_key")
+    }
 }
 
 
