@@ -30,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG_MODE", default=True)
 
-ALLOWED_HOSTS = ["localhost", env("HOST", default="localhost")]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", env("HOST", default="localhost")]
 
 
 # Application definition
@@ -83,14 +83,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
 
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('POSTGRES_DB', default="fallback_key"),
-        'USER': env('POSTGRES_USER', default="fallback_key"),
-        'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
-        'HOST': env('DATABASE_HOST', default="fallback_key"),
-        'PORT': env('DATABASE_PORT', default="fallback_key")
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
     }
+
+    #'default': {
+    #    'ENGINE': 'django.db.backends.postgresql',
+    #    'NAME': env('POSTGRES_DB', default="fallback_key"),
+    #    'USER': env('POSTGRES_USER', default="fallback_key"),
+    #    'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
+    #    'HOST': env('DATABASE_HOST', default="fallback_key"),
+    #    'PORT': env('DATABASE_PORT', default="fallback_key")
+    #}
 }
 
 
