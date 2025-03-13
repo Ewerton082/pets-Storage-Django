@@ -1,0 +1,25 @@
+{% extends 'starter.html' %}
+{% load static %}
+
+{% block title %}Relatorio do Dia xx/xx/xxxx {% endblock %}
+
+{% block content %}
+    {% if report %}
+        {% for data in report %}
+            <div>
+                <h1>{{data.report_date}} - {{data.select_food}} | Quantidade Inicial: {{data.starter_quantity}}</h1>
+                <span class="text-success">Compras: {{data.buy_quantity}}</span>
+                <span class="text-danger">Vendas: {{data.sell_quantity}}</span>
+                <span class="text-warning">Finalizado estoque
+                    {% if not data.ending_quantity %}
+                        não Fechamos
+                    {% else %}
+                        {{data.ending_quantity}}
+                    {% endif %}
+                </span>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Não temos Relatorio para essa data</h1>
+    {% endif %}
+{% endblock %}

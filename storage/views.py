@@ -210,3 +210,13 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
             queryset = queryset.filter(user__username__icontains=filter_data)
 
         return queryset
+
+
+class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    context_object_name = "report"
+    model = StorageMonthlyReport
+    template_name = "weekreport.html"
+
+
+    def test_func(self):
+        return self.request.user.is_superuser
