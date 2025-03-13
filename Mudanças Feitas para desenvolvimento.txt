@@ -1,3 +1,5 @@
 o banco de dados foi colocado o sqlite então só tirar  comentario do que era o anterior
 
 Foi adicionado o ip local no alowed host para funcionar tbm "127.0.0.1"
+
+Debug mudado

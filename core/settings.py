@@ -28,7 +28,9 @@ environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), e
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG_MODE", default=True)
+
+# DEBUG = env("DEBUG_MODE", default=True)
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", env("HOST", default="localhost")]
 
@@ -139,7 +141,7 @@ STATICFILES_DIRS = [
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

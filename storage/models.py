@@ -58,10 +58,10 @@ class StorageMoviments(models.Model):
 class StorageMonthlyReport(models.Model):
     report_date = models.DateField(verbose_name="Data do Relatorio")
     select_food = models.ForeignKey(to=StorageFoods, on_delete=models.CASCADE, verbose_name="Ração do Relatorio")
-    starter_quantity = models.IntegerField()
+    starter_quantity = models.IntegerField(null=True, blank=True)
     buy_quantity = models.IntegerField(default=0)
     sell_quantity = models.IntegerField(default=0)
-    ending_quantity = models.IntegerField()
+    ending_quantity = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.report_date} | {self.select_food.food}"

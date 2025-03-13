@@ -4,8 +4,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from storage.models import StorageFoods, Brands, StorageMoviments
+from storage.models import StorageFoods, Brands, StorageMoviments, StorageMonthlyReport
 from storage.forms import NewFood, Newbrand
+from django.utils import timezone
 
 # Create your views here.
 
@@ -163,6 +164,15 @@ def CreateTransition(request, pk):
                 moviment_type='Compra',
             )
 
+            today = timezone.now().date()
+            last_monday = today - timezone.timedelta(days=today.weekday())
+            report, _ = StorageMonthlyReport.objects.get_or_create(
+                report_date = last_monday,
+                select_food = StorageFoods.objects.get(pk=pk)
+            )
+            report.buy_quantity += quantidade
+            report.save()
+
         elif tipo_movimentacao == 'sell':
             StorageFoods.objects.filter(id=pk).update(quantity=F("quantity") - quantidade)
             StorageMoviments.objects.create(
@@ -171,6 +181,15 @@ def CreateTransition(request, pk):
                 quantity=quantidade,
                 moviment_type='Venda',
             )
+
+            today = timezone.now().date()
+            last_monday = today - timezone.timedelta(days=today.weekday())
+            report, _ = StorageMonthlyReport.objects.get_or_create(
+                report_date = last_monday,
+                select_food = StorageFoods.objects.get(pk=pk)
+            )
+            report.sell_quantity += quantidade
+            report.save()
 
         return HttpResponseRedirect(success_url)
 
