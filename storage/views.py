@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from storage.models import StorageFoods, Brands, StorageMoviments, StorageMonthlyReport
+from django.contrib.auth.models import User
 from storage.forms import NewFood, Newbrand
 from django.utils import timezone
 
