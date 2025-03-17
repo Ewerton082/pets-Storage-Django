@@ -8,11 +8,16 @@
 {% endblock %}
 
 {% block content %}
+
+    <div class="container-flex bg-danger mt-4">
+        <h1 class="text-center">Filtragem de data aqui</h1>
+    </div>
+
     {% if report %}
-        <div class="container-fluid mt-3 mx-1 p-0 row">
-            <div class="col col-md-8">
-                <table class="mt-3 table table-sm table-striped text-center align-middle">
-                    <thead>
+        <div class="container-fluid mt-2 mx-1 p-0 row">
+            <div class="col col-md-8 table-responsive my-table mt-2">
+                <table class="my-realtable mt-3 table border border-1 border-black table-sm table-striped text-center align-middle">
+                    <thead class="my-thead">
                         <tr>
                             <th>Produto</th>
                             <th class="responsive-column">Tipo</th>
@@ -22,7 +27,7 @@
                             <th>Final</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                         {% for item in report %}
                             <tr>
                                 <td>{{item.select_food}}</td>

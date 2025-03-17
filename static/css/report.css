@@ -3,3 +3,20 @@
         display: none;
     }
 }
+
+.my-table{
+    max-height: 75vh !important;
+}
+
+.my-thead{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+}
+
+.my-realtable{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
