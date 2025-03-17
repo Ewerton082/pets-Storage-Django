@@ -1,7 +1,7 @@
 {% extends 'starter.html' %}
 {% load static %}
 
-{% block title %}Relatorio do Dia xx/xx/xxxx {% endblock %}
+{% block title %}Relatorio do Dia {{date}} {% endblock %}
 
 {% block settings %} 
     <link rel="stylesheet" href="{% static 'css/report.css' %}">
@@ -51,31 +51,14 @@
                             <th class="bg-danger text-light">Vendidas</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
+                            {% for food in top_sales %}
+                                <tr>
+                                    <td>{{start_week}}</td>
+                                    <td>{{food.select_food__food}}</td>
+                                    <td>{{food.all_sales}}</td>
+                                </tr>
+                            {% endfor  %}
+                            
                         </tbody>
                     </table>
                 </div>
@@ -87,31 +70,13 @@
                             <th class="bg-success text-light">Vendidas</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="fw-semibold">10/03/2025</td>
-                                <td class="fw-semibold">Dog Chow Raças pequenas 15KG</td>
-                                <td class="fw-semibold">8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2025</td>
-                                <td>Dog Chow Raças pequenas 15KG</td>
-                                <td>8</td>
-                            </tr>
+                            {% for food in top_buys %}
+                                <tr>
+                                    <td>{{start_week}}</td>
+                                    <td>{{food.select_food__food}}</td>
+                                    <td>{{food.all_buys}}</td>
+                                </tr>
+                            {% endfor  %}
                         </tbody>
                     </table>
                 </div>

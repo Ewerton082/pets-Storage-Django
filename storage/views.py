@@ -1,5 +1,5 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from django.db.models import Q, F
+from django.db.models import Q, F, Sum
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -8,6 +8,7 @@ from storage.models import StorageFoods, Brands, StorageMoviments, StorageMonthl
 from django.contrib.auth.models import User
 from storage.forms import NewFood, Newbrand
 from django.utils import timezone
+from datetime import date, timedelta
 
 # Create your views here.
 
@@ -221,3 +222,26 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def test_func(self):
         return self.request.user.is_superuser
+    
+    def get_queryset(self):
+        today = timezone.now().date()
+        start_week = today - timedelta(days=today.weekday())
+
+        queryset = StorageMonthlyReport.objects.filter(report_date=start_week)
+        return queryset
+
+    
+    def get_context_data(self, **kwargs):
+        today = timezone.now().date()
+        start_week = today - timedelta(days=today.weekday())
+        end_week = start_week + timedelta(days=6)
+        
+        context = super().get_context_data(**kwargs)
+
+        top_sales = ( StorageMonthlyReport.objects.filter(report_date__range=[start_week, end_week]).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
+        top_buys = ( StorageMonthlyReport.objects.filter(report_date__range=[start_week, end_week]).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
+        
+        context["start_week"] = start_week
+        context["top_sales"] = top_sales
+        context["top_buys"] = top_buys
+        return context
