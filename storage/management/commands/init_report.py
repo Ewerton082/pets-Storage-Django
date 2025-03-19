@@ -18,7 +18,8 @@ class Command(BaseCommand):
                 report_date = last_monday,
                 select_food = item,
                 defaults={
-                    "starter_quantity": item.quantity
+                    "starter_quantity": item.quantity,
+                    "ending_quantity": item.quantity,
                 }
             )
 

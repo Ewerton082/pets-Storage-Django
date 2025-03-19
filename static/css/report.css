@@ -20,3 +20,15 @@
     border-collapse: separate;
     border-spacing: 0;
 }
+
+.my-nav{
+     max-width: 490px !important;
+}
+
+.my-group{
+    max-width: 60%;
+}
+
+.my-sub{
+    max-width: 35%;
+}

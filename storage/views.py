@@ -173,6 +173,7 @@ def CreateTransition(request, pk):
                 select_food = StorageFoods.objects.get(pk=pk)
             )
             report.buy_quantity += quantidade
+            report.ending_quantity += quantidade
             report.save()
 
         elif tipo_movimentacao == 'sell':
@@ -191,6 +192,7 @@ def CreateTransition(request, pk):
                 select_food = StorageFoods.objects.get(pk=pk)
             )
             report.sell_quantity += quantidade
+            report.ending_quantity -= quantidade
             report.save()
 
         return HttpResponseRedirect(success_url)
@@ -224,24 +226,33 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
     
     def get_queryset(self):
-        today = timezone.now().date()
-        start_week = today - timedelta(days=today.weekday())
+        selected_date = self.request.GET.get("report_date")
+        if selected_date:
+            queryset = StorageMonthlyReport.objects.filter(report_date=selected_date)
+        else:
+            today = timezone.now().date()
+            start_week = today - timedelta(days=today.weekday())
+            queryset = StorageMonthlyReport.objects.filter(report_date=start_week)
 
-        queryset = StorageMonthlyReport.objects.filter(report_date=start_week)
         return queryset
 
     
     def get_context_data(self, **kwargs):
         today = timezone.now().date()
         start_week = today - timedelta(days=today.weekday())
-        end_week = start_week + timedelta(days=6)
+
+        available_dates = StorageMonthlyReport.objects.values_list("report_date", flat=True).distinct().order_by("-report_date")
+        selected_date = self.request.GET.get("report_date")
+        filter_date = selected_date if selected_date else start_week
         
         context = super().get_context_data(**kwargs)
 
-        top_sales = ( StorageMonthlyReport.objects.filter(report_date__range=[start_week, end_week]).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
-        top_buys = ( StorageMonthlyReport.objects.filter(report_date__range=[start_week, end_week]).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
+        top_sales = ( StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
+        top_buys = ( StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
         
-        context["start_week"] = start_week
+
+        context["available_dates"] = available_dates
+        context["selected_date"] = filter_date
         context["top_sales"] = top_sales
         context["top_buys"] = top_buys
         return context
