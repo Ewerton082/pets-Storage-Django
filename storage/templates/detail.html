@@ -12,6 +12,9 @@
 
 
 {% block content %}
+    {% for seller in sellers %}
+        {{seller}}
+    {% endfor%}
 
     <div class="container-sm border border-2 rounded p-4 d-lg-none bg-light my-3" style="max-width: 500px;">
         <div class="col card w50">
@@ -47,8 +50,8 @@
     </div>
 
     <div class="d-none d-lg-block container-xl my-5 align-self-center bg-light border border-1 p-5 border-black rounded mybox">
-        <div class="row text-center">
-            <div class="col col-4 h-75 p-0">
+        <div class="row">
+            <div class="col col-4 mt-5 h-100 p-0">
                 {% if item.image %}
                     <img class="img-thumbnail" src="{{item.image.url}}" alt="{{item.food}}" style="height: 500px !important">
                 {% else %}
@@ -70,37 +73,39 @@
                     </div>
                     <hr class="col-12 border-2 border-dark">
                     <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Distribuidora :</p>
-                        <p class="fs-3 col-5 text-start">{{item.brand}}</p>
-                    </div>
-
-                    <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade :</p>
-                        <p class="fs-3 col-5 text-start">{{item.quantity}} UN.</p>
-                    </div>
-
-                    {% if user.is_superuser %}
-                    <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade de Alerta:</p>
-                        <p class="fs-3 col-5 text-start">{{item.alert_quantity}} UN.</p>
-                    </div>
-                    {% endif %}
-
-                    {% if user.is_superuser %}
-                    <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Compra :</p>
-                        <p class="fs-3 col-5 text-start text-success">{{item.buy_price|floatformat:2}} R$</p>
-                    </div>
-                    {% endif %}
-
-                    <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda crédito :</p>
-                        <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_card|floatformat:2}} R$</p>
-                    </div>
-
-                    <div class="row">
-                        <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda Dinheiro :</p>
-                        <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_money|floatformat:2}} R$</p>
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Distribuidora :</p>
+                            <p class="fs-3 col-5 text-start">{{item.brand}}</p>
+                        </div>
+    
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade :</p>
+                            <p class="fs-3 col-5 text-start">{{item.quantity}} UN.</p>
+                        </div>
+    
+                        {% if user.is_superuser %}
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Quantidade de Alerta:</p>
+                            <p class="fs-3 col-5 text-start">{{item.alert_quantity}} UN.</p>
+                        </div>
+                        {% endif %}
+    
+                        {% if user.is_superuser %}
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Compra :</p>
+                            <p class="fs-3 col-5 text-start text-success">{{item.buy_price|floatformat:2}} R$</p>
+                        </div>
+                        {% endif %}
+    
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda crédito :</p>
+                            <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_card|floatformat:2}} R$</p>
+                        </div>
+    
+                        <div class="row">
+                            <p class="fs-3 fw-semibold col-5 text-end me-3">Preço Venda Dinheiro :</p>
+                            <p class="fs-3 col-5 text-start text-danger">{{item.sell_price_money|floatformat:2}} R$</p>
+                        </div>
                     </div>
 
                     <div class="row mt-4">
@@ -122,7 +127,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
     <div class="modal fade" id="buy_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buy_model_label" aria-hidden="true">
@@ -139,6 +143,14 @@
                         <label for="quantidade_compra" class="form-label me-4 fs-2">QTD:</label>
                         <input type="number" name="quantidade" id="quantidade_compra" required min="1" placeholder="Quantas?" class="form-control w-50 align-middle">
                         <input type="hidden" name="tipo_movimentacao" value="buy">
+                    </div>
+                    <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
+                        <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
+                        <select name="seller" id="seller" class="form-select form-select-sm">
+                            {% for seller in sellers %}
+                                <option value="{{seller}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -165,7 +177,14 @@
                         <label for="quantidade_venda" class="form-label me-4 fs-2">QTD:</label>
                         <input type="number" name="quantidade" id="quantidade_venda" required min="1" max="{{item.quantity}}" placeholder="Quantas?" class="form-control w-50 align-middle">
                         <input type="hidden" name="tipo_movimentacao" value="sell">
-
+                    </div>
+                    <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
+                        <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
+                        <select name="seller" id="seller" class="form-select form-select-sm">
+                            {% for seller in sellers %}
+                                <option value="{{seller.pk}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

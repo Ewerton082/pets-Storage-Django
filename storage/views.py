@@ -47,6 +47,13 @@ class DetailFood(LoginRequiredMixin, DetailView):
     template_name = "detail.html"
     model = StorageFoods
     context_object_name = "item"
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context["sellers"] = User.objects.all()
+        context["selected_seller"] = User.objects.get(pk=self.request.user.pk)
+
+        return context
 
 
 class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -154,13 +161,16 @@ class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 def CreateTransition(request, pk):
     if request.method == 'POST':
         quantidade = int(request.POST.get('quantidade', 0))
+        seller = request.POST.get("seller")
+        seller = User.objects.filter(pk=pk)
         tipo_movimentacao = request.POST.get('tipo_movimentacao')
         success_url = reverse_lazy('storage:Detail', kwargs={'pk': pk})
+        product = StorageFoods.objects.get(pk=pk)
 
         if tipo_movimentacao == 'buy':
             StorageFoods.objects.filter(id=pk).update(quantity=F("quantity") + quantidade)
             StorageMoviments.objects.create(
-                user=request.user,
+                user=seller,
                 food=StorageFoods.objects.get(pk=pk),
                 quantity=quantidade,
                 moviment_type='Compra',
@@ -170,7 +180,11 @@ def CreateTransition(request, pk):
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
                 report_date = last_monday,
-                select_food = StorageFoods.objects.get(pk=pk)
+                select_food = product,
+                defaults={
+                    "starter_quantity": product.quantity,
+                    "ending_quantity": product.quantity
+                }
             )
             report.buy_quantity += quantidade
             report.ending_quantity += quantidade
@@ -179,7 +193,7 @@ def CreateTransition(request, pk):
         elif tipo_movimentacao == 'sell':
             StorageFoods.objects.filter(id=pk).update(quantity=F("quantity") - quantidade)
             StorageMoviments.objects.create(
-                user=request.user,
+                user=seller,
                 food=StorageFoods.objects.get(pk=pk),
                 quantity=quantidade,
                 moviment_type='Venda',
@@ -189,7 +203,11 @@ def CreateTransition(request, pk):
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
                 report_date = last_monday,
-                select_food = StorageFoods.objects.get(pk=pk)
+                select_food = product,
+                defaults={
+                    "starter_quantity": product.quantity,
+                    "ending_quantity": product.quantity
+                }
             )
             report.sell_quantity += quantidade
             report.ending_quantity -= quantidade
