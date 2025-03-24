@@ -43,6 +43,17 @@ services:
       - web-app
     networks:
       - webnet
+  
+  cron:
+    build:
+      context: ./app
+    volumes:
+      - ./app:/app
+    depends_on:
+      - web-app
+    restart: always
+    entrypoint: ["/bin/sh", "-c", "cron && tail -f /dev/null"]
+
 
 volumes:
   postgres_data:
