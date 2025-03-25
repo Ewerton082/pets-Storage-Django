@@ -34,6 +34,11 @@ DEBUG = env("DEBUG_MODE", default=True)
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", env("HOST", default="localhost")]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+]
+
 
 # Application definition
 
@@ -140,8 +145,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = "/static/"
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = "/app/staticfiles/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

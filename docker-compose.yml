@@ -54,7 +54,6 @@ services:
     restart: always
     entrypoint: ["/bin/sh", "-c", "cron && tail -f /dev/null"]
 
-
 volumes:
   postgres_data:
   static_volume:
