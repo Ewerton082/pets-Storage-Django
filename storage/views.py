@@ -188,6 +188,7 @@ def CreateTransition(request, pk):
             )
             report.buy_quantity += quantidade
             report.ending_quantity += quantidade
+            report.date = last_monday
             report.save()
 
         elif tipo_movimentacao == 'sell':
@@ -211,6 +212,7 @@ def CreateTransition(request, pk):
             )
             report.sell_quantity += quantidade
             report.ending_quantity -= quantidade
+            report.date = last_monday
             report.save()
 
         return HttpResponseRedirect(success_url)

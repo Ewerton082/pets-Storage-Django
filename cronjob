@@ -1,2 +1,2 @@
 SHELL=/bin/bash
-* * * * * /usr/local/bin/python3 /app/manage.py init_report
+0 0 * * 1 /usr/local/bin/python3 /app/manage.py init_report > /var/log/cron_output.log 2>&1

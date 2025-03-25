@@ -5,7 +5,6 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
       - static_volume:/app/staticfiles/
       - media_volume:/app/media
     depends_on:
@@ -21,7 +20,7 @@ services:
   
   database:
     image: postgres:16-alpine
-    container_name: postgres_database
+    container_name: database
     restart: always
     env_file:
       - .env
@@ -34,7 +33,7 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - static_volume:/app/staticfiles/
@@ -45,12 +44,16 @@ services:
       - webnet
   
   cron:
+    container_name: cron_command
     build:
       context: .
     volumes:
-      - ./app:/app
+      - .:/app
     depends_on:
       - web-app
+      - database
+    networks:
+      - webnet
     restart: always
     entrypoint: ["/bin/sh", "-c", "cron && tail -f /dev/null"]
 
@@ -61,3 +64,4 @@ volumes:
 
 networks:
   webnet:
+    driver: bridge

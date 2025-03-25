@@ -24,8 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 env = environ.Env()
-environ.Env.read_env(env_file=os.path.join(os.path.dirname(__file__), ".env"), encoding="UTF8")
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"), encoding="UTF8")
 SECRET_KEY = env("SECRET_KEY", default="fallback_key")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -100,7 +101,7 @@ DATABASES = {
         'NAME': env('POSTGRES_DB', default="fallback_key"),
         'USER': env('POSTGRES_USER', default="fallback_key"),
         'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
-        'HOST': env('DATABASE_HOST', default="fallback_key"),
+        'HOST': env('DATABASE_HOST', default="database"),
         'PORT': env('DATABASE_PORT', default="fallback_key")
     }
 }
