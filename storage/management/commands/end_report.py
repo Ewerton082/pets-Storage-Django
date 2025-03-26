@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from storage.models import StorageMonthlyReport, StorageFoods
+from storage.models import StorageMonthlyReport
 from django.utils import timezone
 from datetime import timedelta
 
@@ -20,4 +20,3 @@ class Command(BaseCommand):
             item.save()
 
             self.stdout.write(self.style.ERROR(f" Relatório finalizado com sucesso para {food.food}"))
-           

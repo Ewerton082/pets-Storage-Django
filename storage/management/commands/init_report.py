@@ -15,8 +15,8 @@ class Command(BaseCommand):
 
         for item in products:
             report, created = StorageMonthlyReport.objects.get_or_create(
-                report_date = last_monday,
-                select_food = item,
+                report_date=last_monday,
+                select_food=item,
                 defaults={
                     "starter_quantity": item.quantity,
                     "ending_quantity": item.quantity,

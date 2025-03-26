@@ -8,7 +8,7 @@ from storage.models import StorageFoods, Brands, StorageMoviments, StorageMonthl
 from django.contrib.auth.models import User
 from storage.forms import NewFood, Newbrand
 from django.utils import timezone
-from datetime import date, timedelta
+from datetime import timedelta
 
 # Create your views here.
 
@@ -47,9 +47,9 @@ class DetailFood(LoginRequiredMixin, DetailView):
     template_name = "detail.html"
     model = StorageFoods
     context_object_name = "item"
-    
+
     def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["sellers"] = User.objects.all()
         context["selected_seller"] = User.objects.get(pk=self.request.user.pk)
 
@@ -179,8 +179,8 @@ def CreateTransition(request, pk):
             today = timezone.now().date()
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
-                report_date = last_monday,
-                select_food = product,
+                report_date=last_monday,
+                select_food=product,
                 defaults={
                     "starter_quantity": product.quantity,
                     "ending_quantity": product.quantity
@@ -203,8 +203,8 @@ def CreateTransition(request, pk):
             today = timezone.now().date()
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
-                report_date = last_monday,
-                select_food = product,
+                report_date=last_monday,
+                select_food=product,
                 defaults={
                     "starter_quantity": product.quantity,
                     "ending_quantity": product.quantity
@@ -241,22 +241,20 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = StorageMonthlyReport
     template_name = "weekreport.html"
 
-
     def test_func(self):
         return self.request.user.is_superuser
-    
+
     def get_queryset(self):
         selected_date = self.request.GET.get("report_date")
         if selected_date:
-            queryset = StorageMonthlyReport.objects.filter(report_date=selected_date)
+            queryset = StorageMonthlyReport.objects.filter(report_date=selected_date).order_by("select_food")
         else:
             today = timezone.now().date()
             start_week = today - timedelta(days=today.weekday())
-            queryset = StorageMonthlyReport.objects.filter(report_date=start_week)
+            queryset = StorageMonthlyReport.objects.filter(report_date=start_week).order_by("select_food")
 
         return queryset
 
-    
     def get_context_data(self, **kwargs):
         today = timezone.now().date()
         start_week = today - timedelta(days=today.weekday())
@@ -264,12 +262,11 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
         available_dates = StorageMonthlyReport.objects.values_list("report_date", flat=True).distinct().order_by("-report_date")
         selected_date = self.request.GET.get("report_date")
         filter_date = selected_date if selected_date else start_week
-        
+
         context = super().get_context_data(**kwargs)
 
-        top_sales = ( StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
-        top_buys = ( StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
-        
+        top_sales = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
+        top_buys = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
 
         context["available_dates"] = available_dates
         context["selected_date"] = filter_date

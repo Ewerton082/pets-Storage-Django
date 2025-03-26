@@ -53,7 +53,7 @@ class StorageMoviments(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.food} ({self.moviment_type}) - {self.quantity}"
-    
+
 
 class StorageMonthlyReport(models.Model):
     report_date = models.DateField(verbose_name="Data do Relatorio")
