@@ -26,9 +26,12 @@
 }
 
 .my-group{
-    max-width: 60%;
+    max-width: 300px;
+    width: 55%;
 }
 
+
 .my-sub{
-    max-width: 35%;
+    max-width: 300px;
+    width: 40%;
 }

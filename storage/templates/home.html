@@ -15,12 +15,12 @@
         </form>
     </div>
 
-    <div class="p-1 bg-light mx-auto mb-5" id="table_foods">
+    <div class="bg-light mx-auto mb-5" id="table_foods">
         <table class="table table-sm table-striped table-hover text-center align-middle">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>Nome</th>
-                    <th>Peso</th>
+                    <th class="responsive-micro-column">Peso</th>
                     <th class="responsive-column">Tipo</th>
                     <th>QTD</th>
                     {% if user.is_superuser %}
@@ -35,7 +35,7 @@
                     {% for item in pet_food %}
                         <tr class="border-top border-dark" >
                             <td class="fw-semibold">{{ item.food }}</td>
-                            <td>{{ item.weight }} KG</td>
+                            <td class="responsive-micro-column">{{ item.weight }} KG</td>
                             <td class="responsive-column">{{ item.animal }}</td>
                             <td>{{ item.quantity }}</td>
                             {% if user.is_superuser %}                            
