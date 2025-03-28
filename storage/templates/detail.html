@@ -141,14 +141,16 @@
                         <input type="number" name="quantidade" id="quantidade_compra" required min="1" placeholder="Quantas?" class="form-control w-50 align-middle">
                         <input type="hidden" name="tipo_movimentacao" value="buy">
                     </div>
-                    <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
-                        <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
-                        <select name="seller" id="seller" class="form-select form-select-sm">
-                            {% for seller in sellers %}
-                                <option value="{{seller.pk}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    {% if user.is_superuser %}
+                        <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
+                            <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
+                            <select name="seller" id="seller" class="form-select form-select-sm">
+                                {% for seller in sellers %}
+                                    <option value="{{seller.pk}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -175,14 +177,16 @@
                         <input type="number" name="quantidade" id="quantidade_venda" required min="1" max="{{item.quantity}}" placeholder="Quantas?" class="form-control w-50 align-middle">
                         <input type="hidden" name="tipo_movimentacao" value="sell">
                     </div>
-                    <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
-                        <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
-                        <select name="seller" id="seller" class="form-select form-select-sm">
-                            {% for seller in sellers %}
-                                <option value="{{seller.pk}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    {% if user.is_superuser %}
+                        <div class="w-75 mx-auto mt-3 text-center d-flex flex-row">
+                            <label for="seller" class="form-label me-2 fs-3">Vendedor:</label>
+                            <select name="seller" id="seller" class="form-select form-select-sm">
+                                {% for seller in sellers %}
+                                    <option value="{{seller.pk}}" {% if seller == selected_seller %} selected {% endif %}>{{seller}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

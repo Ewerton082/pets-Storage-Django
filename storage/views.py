@@ -164,7 +164,7 @@ def CreateTransition(request, pk):
         seller = request.POST.get("seller")
         seller = User.objects.get(pk=seller)
         tipo_movimentacao = request.POST.get('tipo_movimentacao')
-        success_url = reverse_lazy('storage:Detail', kwargs={'pk': pk})
+        success_url = reverse_lazy('storage:Home')
         product = StorageFoods.objects.get(pk=pk)
 
         if tipo_movimentacao == 'buy':
