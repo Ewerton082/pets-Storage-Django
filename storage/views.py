@@ -23,7 +23,7 @@ class HomeStorage(LoginRequiredMixin, ListView):
         filter_data = self.request.GET.get("filter")
 
         if filter_data:
-            queryset = queryset.filter(Q(food__icontains=filter_data) | Q(animal__iexact=filter_data) | Q(brand__icontains=filter_data))
+            queryset = queryset.filter(Q(food__icontains=filter_data) | Q(animal__iexact=filter_data) | Q(brand__name__icontains=filter_data))
 
         return queryset
 
