@@ -34,7 +34,7 @@
                 {% if pet_food %}
                     {% for item in pet_food %}
                         <tr class="border-top border-dark" >
-                            <td class="fw-semibold">{{ item.food }}</td>
+                            <td class="fw-semibold">{{ item.food }} <span class="show-micro">{{item.weight}} Kg</span></td>
                             <td class="responsive-micro-column">{{ item.weight }} KG</td>
                             <td class="responsive-column">{{ item.animal }}</td>
                             <td>{{ item.quantity }}</td>
