@@ -23,7 +23,7 @@ class HomeStorage(LoginRequiredMixin, ListView):
         filter_data = self.request.GET.get("filter")
 
         if filter_data:
-            queryset = queryset.filter(Q(food__icontains=filter_data) | Q(animal__iexact=filter_data))
+            queryset = queryset.filter(Q(food__icontains=filter_data) | Q(animal__iexact=filter_data) | Q(brand__icontains=filter_data))
 
         return queryset
 
@@ -76,7 +76,7 @@ class CreateFood(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = NewFood
     model = StorageFoods
-    template_name = "createfood.html"
+    template_name = "updatefood.html"
     context_object_name = "form"
 
     def test_func(self):
@@ -87,13 +87,6 @@ class UpdateFood(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("storage:Detail", kwargs={"pk": self.object.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Editar Ração"
-        context["form_btn_success"] = "Salvar Alterações"
-        context["retrieve"] = "storage:Home"
-        return context
 
 
 class DeleteFood(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -127,13 +120,6 @@ class CreateBrand(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     def handle_no_permission(self):
         return redirect("storage:Home")
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Adicionar Nova Marca"
-        context["form_btn_success"] = "Criar Marca"
-        context["retrieve"] = "storage:Home"
-        return context
-
 
 class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = Newbrand
@@ -149,13 +135,6 @@ class UpdateBrand(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("storage:Detail", kwargs={"pk": self.object.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_title"] = "Editar Marca"
-        context["form_btn_success"] = "Salvar Alterações"
-        context["retrieve"] = "storage:Home"
-        return context
 
 
 def CreateTransition(request, pk):
