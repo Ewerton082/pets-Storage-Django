@@ -154,7 +154,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-success">Realizar Compra</button>
+                    <button type="submit" class="btn btn-success" id="sub-btn">Realizar Compra</button>
                 </div>
             </form>
           </div>
@@ -222,4 +222,7 @@
 
 {% endblock %}
 
-<script src="{% static 'js/transitions.js'%}"></script>
+
+{% block js_settings %}
+    <script src="{% static 'js/transitions.js'%}"></script>
+{% endblock %}

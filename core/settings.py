@@ -90,19 +90,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
 
-    "default": {
-          "ENGINE": "django.db.backends.sqlite3",
-          "NAME": "db.sqlite3",
-    }
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': env('POSTGRES_DB', default="fallback_key"),
-    #     'USER': env('POSTGRES_USER', default="fallback_key"),
-    #     'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
-    #     'HOST': env('DATABASE_HOST', default="database"),
-    #     'PORT': env('DATABASE_PORT', default="fallback_key")
+    # "default": {
+    #       "ENGINE": "django.db.backends.sqlite3",
+    #       "NAME": "db.sqlite3",
     # }
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('POSTGRES_DB', default="fallback_key"),
+        'USER': env('POSTGRES_USER', default="fallback_key"),
+        'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
+        'HOST': env('DATABASE_HOST', default="database"),
+        'PORT': env('DATABASE_PORT', default="fallback_key")
+    }
 }
 
 

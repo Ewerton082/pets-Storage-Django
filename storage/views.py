@@ -213,7 +213,6 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
         queryset = StorageMoviments.objects.filter(date__date=date_today).order_by("-date")
         filter_user = self.request.GET.get("filter")
         filter_data = self.request.GET.get("filter_date")
-        print(filter_data)
 
         if filter_data:
             queryset = StorageMoviments.objects.filter(date__date=filter_data)
@@ -221,15 +220,28 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
         if filter_user:
             queryset = StorageMoviments.objects.filter(user__username__icontains=filter_user)
 
-        print(queryset)
-
         return queryset
     
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
+        date_today = timezone.now().date()
+        filter_data = self.request.GET.get("filter_date")
+        movements_today = StorageMoviments.objects.filter(date__date=date_today)
+        if filter_data:
+            movements_today = StorageMoviments.objects.filter(date__date=filter_data)
+        
+        top_seller = (movements_today.filter(moviment_type="Venda").values("user__username").annotate(total_sold=Sum("quantity")).order_by("-total_sold").first())
 
-        context["total_sold"] = 5
+        context["total_sold"] = movements_today.filter(moviment_type="Venda").aggregate(total=Sum("quantity"))["total"] or 0
+        context["total_bought"] = movements_today.filter(moviment_type="Compra").aggregate(total=Sum("quantity"))["total"] or 0
 
+        if top_seller:
+            context["top_seller"] = {
+                "name": top_seller["user__username"],
+                "total_sold": top_seller["total_sold"]
+            }
+        else:
+            context["top_seller"] = "Nenhum"
         return context
 
 

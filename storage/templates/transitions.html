@@ -19,20 +19,39 @@
             </form>
         </div>
 
-        <div class="container-sm d-flex justify-content-around">
-            <div class="bg-light rounded col-3">
-                <p class="fs-4">Vendidas:</p>
-                <p>{{total_sold}}</p>
+        <div class="container-sm d-flex justify-content-around mt-2 mb-3">
+            <div class="col-4 d-flex text-center my-item">
+                <div class="input-group p-0">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-danger bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+                        </svg>
+                    </span>
+                    <div class="form-control"><p class="fs-4 m-0">{{total_sold}} UN</p></div>                
+                </div>
             </div>
 
-            <div class="bg-light rounded col-3">
-                <p class="fs-4">Vendidas:</p>
-                <p>{{total_sold}}</p>
+            <div class="bg-light rounded col-4 d-flex my-item">
+                <div class="input-group p-0">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-success bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+                        </svg>
+                    </span>
+                    <div class="form-control"><p class="fs-4 m-0">{{total_bought}} UN</p></div>                
+                </div>
             </div>
 
-            <div class="bg-light rounded col-3">
-                <p class="fs-4">Vendidas:</p>
-                <p>{{total_sold}}</p>
+            <div class="bg-light rounded col-4 d-flex my-responsive-item">
+                <div class="input-group p-0">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-primary bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                          </svg>
+                    </span>
+                    <div class="form-control"><p class="fs-4 m-0">{{top_seller.name}} | {{top_seller.total_sold}} UN</p></div>                
+                </div>
             </div>
         </div>
 

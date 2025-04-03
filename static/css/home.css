@@ -9,12 +9,23 @@
         display: none;
     }
 
+    .my-responsive-item{
+        display: none !important;
+    }
+
     .show-micro{
         display: block !important;
     }
 }
 
 .show-micro{display: none;}
+
+.my-responsive-item{
+    width: 300px;
+}
+.my-item{
+    width: 175px;
+}
 
 #table_foods{
     max-width: 1500px;
