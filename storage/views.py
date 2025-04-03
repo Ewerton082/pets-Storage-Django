@@ -209,13 +209,28 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
 
     def get_queryset(self):
-        queryset = StorageMoviments.objects.order_by("-date")
-        filter_data = self.request.GET.get("filter")
+        date_today = timezone.now().date()
+        queryset = StorageMoviments.objects.filter(date__date=date_today).order_by("-date")
+        filter_user = self.request.GET.get("filter")
+        filter_data = self.request.GET.get("filter_date")
+        print(filter_data)
 
         if filter_data:
-            queryset = queryset.filter(user__username__icontains=filter_data)
+            queryset = StorageMoviments.objects.filter(date__date=filter_data)
+
+        if filter_user:
+            queryset = StorageMoviments.objects.filter(user__username__icontains=filter_user)
+
+        print(queryset)
 
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+
+        context["total_sold"] = 5
+
+        return context
 
 
 class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -236,6 +251,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
             queryset = StorageMonthlyReport.objects.filter(report_date=start_week).order_by("select_food")
 
         return queryset
+    
 
     def get_context_data(self, **kwargs):
         today = timezone.now().date()
@@ -247,8 +263,8 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
         context = super().get_context_data(**kwargs)
 
-        top_sales = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:5])
-        top_buys = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
+        top_sales = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food", "select_food__weight").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:10])
+        top_buys = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food", "select_food__weight").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
 
         context["available_dates"] = available_dates
         context["selected_date"] = filter_date

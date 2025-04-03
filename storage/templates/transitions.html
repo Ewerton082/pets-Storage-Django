@@ -11,9 +11,29 @@
 
         <div class="container-sm">
             <form class="row my-4 mx-auto" action="" method="get">
-                <input class="col col-6 me-5 p-1 rounded" type="text" name="filter" id="filter" placeholder="Nome do Vendedor" class="form-control">
-                <input class="btn btn-primary p-1 col col-4" type="submit" value="Filtrar Dados">
+                <div class="flex col col-7 me-2">
+                    <input type="text" name="filter" id="filter" placeholder="Nome do Vendedor" class="form-control rounded">
+                    <input type="date" name="filter_date" class="form-control mt-2 rounded">
+                </div>
+                <input class="btn btn-primary col col-4 my-btn-sub" type="submit" value="Filtrar Dados">
             </form>
+        </div>
+
+        <div class="container-sm d-flex justify-content-around">
+            <div class="bg-light rounded col-3">
+                <p class="fs-4">Vendidas:</p>
+                <p>{{total_sold}}</p>
+            </div>
+
+            <div class="bg-light rounded col-3">
+                <p class="fs-4">Vendidas:</p>
+                <p>{{total_sold}}</p>
+            </div>
+
+            <div class="bg-light rounded col-3">
+                <p class="fs-4">Vendidas:</p>
+                <p>{{total_sold}}</p>
+            </div>
         </div>
 
         <table class="table table-sm text-center table-striped mx-auto mt-2 align-middle border-bottom border-dark border-1" id="table_foods">

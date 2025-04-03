@@ -33,8 +33,8 @@
             <tbody>
                 {% if pet_food %}
                     {% for item in pet_food %}
-                        <tr class="border-top border-dark" >
-                            <td class="fw-semibold">{{ item.food }} <span class="show-micro">{{item.weight}} Kg</span></td>
+                        <tr class="border-top border-dark">
+                            <td class="fw-semibold"><a href="{% url 'storage:Detail' item.pk %}" class="non-style">{{ item.food }} <span class="show-micro">{{item.weight}} Kg</span></a></td>
                             <td class="responsive-micro-column">{{ item.weight }} KG</td>
                             <td class="responsive-column">{{ item.animal }}</td>
                             <td>{{ item.quantity }}</td>
