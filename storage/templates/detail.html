@@ -16,17 +16,19 @@
     <div class="container-sm border border-2 rounded p-4 d-lg-none bg-light my-3" style="max-width: 500px;">
         <div class="col card w50">
             {% if item.image %}
-                <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
+                <a data-bs-toggle="modal" data-bs-target="#ImageModal">
+                    <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="225">
+                </a>
             {% else %}
                 <img class="card-img-top" src="{% static 'img/no-photo.png' %}" alt="{{item.food}}" height="225">
             {% endif %}
             <div class="card-title">
-                <h1 class="fs-2 fw-bold mx-2 mt-2">{{item.food}} | {{item.weight}} KG</h1>
+                <h1 class="fs-2 fw-bold mx-2 mt-2 text-center">{{item.food}} | {{item.weight}} KG</h1>
             </div>
             <div class="card-text mt-2">
-                <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}}</p>
+                <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade:</span> {{item.quantity}} Un.</p>
                 {% if user.is_superuser %}
-                    <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}}</p>
+                    <p class="ms-2 lead fw-bold"><span class="text-primary me-2">Quantidade de Alerta:</span> {{item.alert_quantity}} Un.</p>
                 {% endif %}
                 {% if user.is_superuser %} 
                     <p class="ms-2 lead fw-bold"><span class="text-success">Valor de compra:</span> R$ {{item.buy_price|floatformat:2}}</p>
@@ -107,12 +109,12 @@
 
                     <div class="row mt-4">
 
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#sell_modal" class="btn btn-danger col m-2 p-2 text-center sell_button">Realizar venda <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#sell_modal" class="btn btn-danger col m-2 p-2 text-center sell_button">Realizar Venda <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
                           </svg></a>
 
                         {% if user.is_superuser %}
-                          <a type="button" data-bs-toggle="modal" data-bs-target="#buy_modal" class="btn btn-success col m-2 p-2 text-center ">Adicionar ao Estoque <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <a type="button" data-bs-toggle="modal" data-bs-target="#buy_modal" class="btn btn-success col m-2 p-2 text-center ">Realizar Pedido <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                           </svg></a>
                       
@@ -219,6 +221,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="ImageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-light">
+              <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">{{item.food}}, {{item.weight}} KG</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="450">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger w-50 mx-auto" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 {% endblock %}
 
