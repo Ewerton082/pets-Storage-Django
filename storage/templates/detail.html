@@ -221,22 +221,25 @@
         </div>
     </div>
 
-    <div class="modal fade" id="ImageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-light">
-              <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">{{item.food}}, {{item.weight}} KG</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    {% if item.image %}
+        <div class="modal fade" id="ImageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-light">
+                <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">{{item.food}}, {{item.weight}} KG</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="450">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger w-50 mx-auto" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <img class="card-img-top" src="{{item.image.url}}" alt="{{item.food}}" height="450">
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger w-50 mx-auto" data-bs-dismiss="modal">Fechar</button>
-            </div>
-          </div>
         </div>
-      </div>
+    {% endif %}
 
 {% endblock %}
 

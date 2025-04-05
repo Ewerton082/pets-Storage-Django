@@ -158,7 +158,7 @@ def CreateTransition(request, pk):
                 moviment_type='Compra',
             )
 
-            today = timezone.now().date()
+            today = timezone.localtime().date()
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
                 report_date=last_monday,
@@ -182,7 +182,7 @@ def CreateTransition(request, pk):
                 moviment_type='Venda',
             )
 
-            today = timezone.now().date()
+            today = timezone.localtime().date()
             last_monday = today - timezone.timedelta(days=today.weekday())
             report, _ = StorageMonthlyReport.objects.get_or_create(
                 report_date=last_monday,
@@ -209,22 +209,23 @@ class ShowTransitions(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_superuser
 
     def get_queryset(self):
-        date_today = timezone.now().date()
-        queryset = StorageMoviments.objects.filter(date__date=date_today).order_by("-date")
+        queryset = StorageMoviments.objects.all()
+
         filter_user = self.request.GET.get("filter")
         filter_data = self.request.GET.get("filter_date")
 
-        if filter_data:
-            queryset = StorageMoviments.objects.filter(date__date=filter_data)
+        if not filter_data:
+            filter_data = timezone.localtime().date()
+        queryset = queryset.filter(date__date=filter_data)
 
         if filter_user:
-            queryset = StorageMoviments.objects.filter(user__username__icontains=filter_user)
+            queryset = queryset.filter(user__username__icontains=filter_user)
 
-        return queryset
+        return queryset.order_by("-date")
     
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
-        date_today = timezone.now().date()
+        date_today = timezone.localtime().date()
         filter_data = self.request.GET.get("filter_date")
         movements_today = StorageMoviments.objects.filter(date__date=date_today)
         if filter_data:
@@ -258,7 +259,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
         if selected_date:
             queryset = StorageMonthlyReport.objects.filter(report_date=selected_date).order_by("select_food")
         else:
-            today = timezone.now().date()
+            today = timezone.localtime.date()
             start_week = today - timedelta(days=today.weekday())
             queryset = StorageMonthlyReport.objects.filter(report_date=start_week).order_by("select_food")
 
@@ -266,7 +267,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
     
 
     def get_context_data(self, **kwargs):
-        today = timezone.now().date()
+        today = timezone.localtime.date()
         start_week = today - timedelta(days=today.weekday())
 
         available_dates = StorageMonthlyReport.objects.values_list("report_date", flat=True).distinct().order_by("-report_date")
