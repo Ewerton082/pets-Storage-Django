@@ -34,7 +34,7 @@ class AlertHomeStorage(LoginRequiredMixin, UserPassesTestMixin, ListView):
     context_object_name = "pet_food"
 
     def get_queryset(self):
-        return StorageFoods.objects.filter(alert_quantity__gt=F('quantity')).order_by("brand")
+        return StorageFoods.objects.filter(alert_quantity__gte=F('quantity')).order_by("brand")
 
     def test_func(self):
         return self.request.user.is_superuser
@@ -276,7 +276,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context = super().get_context_data(**kwargs)
 
         top_sales = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food", "select_food__weight").annotate(all_sales=Sum("sell_quantity")).order_by("-all_sales")[:10])
-        top_buys = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food", "select_food__weight").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:5])
+        top_buys = (StorageMonthlyReport.objects.filter(report_date=filter_date).values("select_food__food", "select_food__weight").annotate(all_buys=Sum("buy_quantity")).order_by("-all_buys")[:4])
 
         context["available_dates"] = available_dates
         context["selected_date"] = filter_date
