@@ -259,7 +259,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
         if selected_date:
             queryset = StorageMonthlyReport.objects.filter(report_date=selected_date).order_by("select_food")
         else:
-            today = timezone.localtime.date()
+            today = timezone.now().date()
             start_week = today - timedelta(days=today.weekday())
             queryset = StorageMonthlyReport.objects.filter(report_date=start_week).order_by("select_food")
 
@@ -267,7 +267,7 @@ class ShowRelatory(LoginRequiredMixin, UserPassesTestMixin, ListView):
     
 
     def get_context_data(self, **kwargs):
-        today = timezone.localtime.date()
+        today = timezone.now().date()
         start_week = today - timedelta(days=today.weekday())
 
         available_dates = StorageMonthlyReport.objects.values_list("report_date", flat=True).distinct().order_by("-report_date")
