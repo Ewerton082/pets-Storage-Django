@@ -96,7 +96,7 @@ DATABASES = {
     # }
 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+       'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('POSTGRES_DB', default="fallback_key"),
         'USER': env('POSTGRES_USER', default="fallback_key"),
         'PASSWORD': env('POSTGRES_PASSWORD', default="fallback_key"),
