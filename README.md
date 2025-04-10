@@ -57,3 +57,6 @@ docker-compose exec app python manage.py createsuperuser
 5. **Abra a aplicação no seu navegador**
 
 Acesse: http://localhost:8000
+
+**Observação:**  
+> Se for rodar o projeto via `localhost`, altere no `docker-compose.yml` a porta do container **nginx** para `8000:8000`.
