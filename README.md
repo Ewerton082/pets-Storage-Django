@@ -75,3 +75,6 @@ python manage.py seed_brand Seeds/new_brands.csv
 # Adicionar rações (relacionadas às marcas)
 python manage.py seed_pet_food Seeds/new_foods.csv
 ```
+
+**Observação:**  
+> Se for rodar o projeto via `localhost`, altere no `docker-compose.yml` a porta do container **nginx** para `8000:8000`.
