@@ -1,12 +1,12 @@
-# Pets
+# Pets Food Storage
 
-Pets é uma plataforma para controle de estoque e venda de rações feito com o Framework Django.
+Este projeto é uma plataforma para controle de estoque e venda de rações feito com o Framework Django.
 
 ### Requisitos
 
 Antes de começar, verifique se você tem as seguintes ferramentas instaladas:
 
-- [Docker](https://www.docker.com/get-started)
+- [Docker](https://www.docker.com/get-started)  
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Rodando a aplicação
@@ -16,8 +16,8 @@ Antes de começar, verifique se você tem as seguintes ferramentas instaladas:
 Se ainda não tiver o repositório, clone-o para sua máquina local:
 
 ```bash
- git clone https://github.com/Ewerton082pets-Storage-Django.git
- cd pets-Storage-Django
+git clone https://github.com/Ewerton082/pets-Storage-Django.git
+cd pets-Storage-Django
 ```
 
 2. **Crie um arquivo .env:**
@@ -25,15 +25,21 @@ Se ainda não tiver o repositório, clone-o para sua máquina local:
 ```bash
 # .env
 
-# Credenciais para um banco de dados PostgreSQL.
-DATABASE_NAME=pets_dev
-DATABASE_USER=postgres_user
-DATABASE_PASSWORD=postgres_password
-DATABASE_HOST=db
-DATABASE_URL=postgres://postgres_user:postgres_password@db:5432/pets_dev
+# Chave secreta do Django. Você pode gerar uma nova em: https://djecrety.ir/
+SECRET_KEY=sua_chave_secreta_aqui
 
-# Auto reload
-DEBUG=True
+# Ativa o modo de depuração (True para desenvolvimento, False para produção)
+DEBUG_MODE=True
+
+# Host da aplicação. Para rodar localmente, use 127.0.0.1
+HOST=127.0.0.1
+
+# Configurações do PostgreSQL
+POSTGRES_DB=nome_do_banco
+POSTGRES_USER=usuario
+POSTGRES_PASSWORD=senha
+DATABASE_HOST=database
+DATABASE_PORT=5432
 ```
 
 3. **Suba a aplicação:**
@@ -58,5 +64,14 @@ docker-compose exec app python manage.py createsuperuser
 
 Acesse: http://localhost:8000
 
-**Observação:**  
-> Se for rodar o projeto via `localhost`, altere no `docker-compose.yml` a porta do container **nginx** para `8000:8000`.
+### Seed do banco de dados
+
+Para popular o banco de dados com as marcas e os produtos:
+
+```bash
+# Adicionar marcas
+python manage.py seed_brand Seeds/new_brands.csv
+
+# Adicionar rações (relacionadas às marcas)
+python manage.py seed_pet_food Seeds/new_foods.csv
+```
