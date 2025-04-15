@@ -32,9 +32,9 @@
     </div>
 
     {% if report %}
-        <div class="row">
-            <div class="col col-lg-8 table-responsive my-table mt-2">
-                <table class="my-realtable mt-3 table border border-1 border-black table-sm table-striped-collumn text-center align-middle">
+        <div class="row mt-2 justify-content-center">
+            <div class="col col-lg-7 table-responsive my-table mt-2">
+                <table class="my-realtable mt-3 table border border-2 border-black table-sm table-striped text-center align-middle">
                     <thead class="my-thead table-dark">
                         <tr>
                             <th>Produto</th>
@@ -48,14 +48,14 @@
                     <tbody class="table-group-divider">
                         {% for item in report %}
                             <tr>
-                                <td class="fw-semibold">{{item.select_food}}</td>
+                                <td class="fw-bold">{{item.select_food}}</td>
                                 <td class="responsive-column ">{{item.select_food.animal}}</td>
                                 <td class="fw-semibold">{{item.starter_quantity}}</td>
                                 <td class="text-danger fw-semibold">{{item.sell_quantity}}</td>
                                 <td class="text-success fw-semibold">{{item.buy_quantity}}</td>
                                 <td class="fw-semibold">
                                     {% if not item.ending_quantity %}
-                                        Sem Dados
+                                        0
                                     {% else %}
                                         {{item.ending_quantity}}
                                     {% endif %}
@@ -78,7 +78,7 @@
                                 <tr>
                                     <td class="fw-bold">{{forloop.counter}} º</td>
                                     <td>{{food.select_food__food}} {{food.select_food__weight}} Kg</td>
-                                    <td>{{food.all_sales}}</td>
+                                    <td class="fw-semibold">{{food.all_sales}}</td>
                                 </tr>
                             {% endfor  %}
                             
@@ -97,7 +97,7 @@
                                 <tr>
                                     <td class="fw-bold">{{ forloop.counter}} º</td>
                                     <td>{{food.select_food__food}} {{food.select_food__weight}} Kg</td>
-                                    <td>{{food.all_buys}}</td>
+                                    <td class="fw-semibold">{{food.all_buys}}</td>
                                 </tr>
                             {% endfor  %}
                         </tbody>
@@ -107,6 +107,6 @@
             </div>
         </div>
     {% else %}
-        <h1>Não temos Relatorio para essa data</h1>
+        <h1 class="justify-content-center">Não temos Relatorio para essa data</h1>
     {% endif %}
 {% endblock %}

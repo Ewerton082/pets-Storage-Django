@@ -5,20 +5,12 @@
 }
 
 @media (max-width: 500px) {
-    .responsive-micro-column {
-        display: none;
-    }
 
     .my-responsive-item{
         display: none !important;
     }
 
-    .show-micro{
-        display: block !important;
-    }
 }
-
-.show-micro{display: none;}
 
 .my-responsive-item{
     width: 300px;

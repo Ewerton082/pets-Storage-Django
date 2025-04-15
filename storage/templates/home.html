@@ -20,7 +20,6 @@
             <thead class="table-dark">
                 <tr>
                     <th>Nome</th>
-                    <th class="responsive-micro-column">Peso</th>
                     <th class="responsive-column">Tipo</th>
                     <th>QTD</th>
                     {% if user.is_superuser %}
@@ -34,8 +33,7 @@
                 {% if pet_food %}
                     {% for item in pet_food %}
                         <tr class="border-top border-dark">
-                            <td class="fw-semibold"><a href="{% url 'storage:Detail' item.pk %}" class="non-style">{{ item.food }} <span class="show-micro">{{item.weight}} Kg</span></a></td>
-                            <td class="responsive-micro-column">{{ item.weight }} KG</td>
+                            <td class="fw-semibold"><a href="{% url 'storage:Detail' item.pk %}" class="non-style">{{ item.food }} <span class="fw-bold">{{item.weight}} Kg</span></a></td>
                             <td class="responsive-column">{{ item.animal }}</td>
                             <td>{{ item.quantity }}</td>
                             {% if user.is_superuser %}                            
